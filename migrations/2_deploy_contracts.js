@@ -1,10 +1,10 @@
-var Utilities = artifacts.require("Utilities");
-var OhanaCoin = artifacts.require("OhanaCoin");
-var Owned = artifacts.require("Owned");
-var Leaderboard = artifacts.require("Leaderboard");
+// Deploy contracts that store data
+
+const OhanaCoinStorage = artifacts.require("OhanaCoinStorage");
+const AdminStorage = artifacts.require("AdminStorage");
+
 
 module.exports = function(deployer) {
-  deployer.deploy([Utilities, Owned, Leaderboard]);
-  deployer.link(Utilities, OhanaCoin);
-  deployer.deploy(OhanaCoin, 100000, {value:10000});
+  deployer.deploy(OhanaCoinStorage, 1000000); //initialize storage with tokens
+  deployer.deploy(AdminStorage);
 };

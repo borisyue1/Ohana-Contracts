@@ -5,9 +5,10 @@ contract('Leaderboard', function(accounts) {
 	// addBalance() basic test
 	it("should add 3 users to the leaderboard in the correct order", async () => {
 	    let instance = await Leaderboard.deployed();
-	    await instance.addBalance(1, {from: accounts[1]});
-	    await instance.addBalance(3, {from: accounts[2]});
-	    await instance.addBalance(2, {from: accounts[3]});
+	    await instance.resetLeaderboard();
+	    await instance.addBalance(accounts[1], 1);
+	    await instance.addBalance(accounts[2], 3);
+	    await instance.addBalance(accounts[3], 2);
 	    var first_user = await instance.getUser(1);
 	    var second_user = await instance.getUser(2);
 	    var third_user = await instance.getUser(3);
@@ -23,9 +24,9 @@ contract('Leaderboard', function(accounts) {
 	it("should add 2 users to the leaderboard in the correct order", async () => {
 	    let instance = await Leaderboard.deployed();
 	    await instance.resetLeaderboard();
-	    await instance.addBalance(1, {from: accounts[1]});
-	    await instance.addBalance(3, {from: accounts[2]});
-	    await instance.addBalance(2, {from: accounts[1]});
+	    await instance.addBalance(accounts[1], 1);
+	    await instance.addBalance(accounts[2], 3);
+	    await instance.addBalance(accounts[1], 2);
 	    var first_user = await instance.getUser(1);
 	    var second_user = await instance.getUser(2);
 	    var third_user = await instance.getUser(3); //shouldn't exist
@@ -41,11 +42,11 @@ contract('Leaderboard', function(accounts) {
 	it("should add 4 users to the leaderboard in the correct order", async () => {
 	    let instance = await Leaderboard.deployed();
 	    await instance.resetLeaderboard();
-	    await instance.addBalance(3, {from: accounts[1]});
-	    await instance.addBalance(5, {from: accounts[2]});
-	    await instance.addBalance(2, {from: accounts[3]});
-	    await instance.addBalance(4, {from: accounts[3]});
-	    await instance.addBalance(1, {from: accounts[4]});
+	    await instance.addBalance(accounts[1], 3);
+	    await instance.addBalance(accounts[2], 5);
+	    await instance.addBalance(accounts[3], 2);
+	    await instance.addBalance(accounts[3], 4);
+	    await instance.addBalance(accounts[4], 1);
 	    var first_user = await instance.getUser(1);
 	    var second_user = await instance.getUser(2);
 	    var third_user = await instance.getUser(3);

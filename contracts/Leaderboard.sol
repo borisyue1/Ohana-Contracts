@@ -8,7 +8,7 @@ contract Leaderboard {
         uint256 personalBalance;
     }
     
-    function addBalance(uint256 balance) external returns (bool) {
+    function addBalance(address user, uint256 balance) external returns (bool) {
         if (leaderboard[9].personalBalance >= balance) {
             // user didn't make it into top 10
             return false;
@@ -16,12 +16,12 @@ contract Leaderboard {
         for (uint i = 0; i < 10; i++) {
             if (leaderboard[i].personalBalance < balance) {
                 // resort
-                if (leaderboard[i].user != msg.sender) {
+                if (leaderboard[i].user != user) {
                     bool duplicate = false;
                     User memory previous = leaderboard[i];
                     // check if same user is already in lower positions of leaderboard
                     for (uint j = i + 1; j < 10; j++) {
-                        if (leaderboard[j].user == msg.sender) {
+                        if (leaderboard[j].user == user) {
                             duplicate = true;
                             delete leaderboard[j];
                         }
@@ -34,12 +34,12 @@ contract Leaderboard {
                 }
                 // add new highscore
                 leaderboard[i] = User({
-                    user: msg.sender,
+                    user: user,
                     personalBalance: balance
                 });
                 return true;
             }
-            if (leaderboard[i].user == msg.sender)
+            if (leaderboard[i].user == user)
                 // user is alrady in list with higher or equal score
                 return false;
         }

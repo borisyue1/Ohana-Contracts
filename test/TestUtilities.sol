@@ -7,7 +7,8 @@ import "../contracts/Utilities.sol";
 contract TestUtilities {
 
 	function testCompareStrings() public {
-	    Assert.equal(Utilities.compareStrings("hello", "hello"), true, "Strings should be equal but are not");
+	    Assert.equal(Utilities.compareStrings("Personal", "Personal"), true, "Strings should be equal but are not");
+	    Assert.equal(Utilities.compareStrings("Transferable", "Transferable"), true, "Strings should be equal but are not");
 	    Assert.equal(Utilities.compareStrings("1!@fda", "a!@fda"), false, "Strings should not be equal but are");
   	}
 
