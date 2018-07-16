@@ -6,7 +6,6 @@ const	schedule 	= require('node-schedule'),
 // Setup RPC connection   
 const port = process.env.PORT || 8000;
 
-
 // var rules = new Array();
 // for (var i = 1; i < 61; i++) {
 // 	var rule = new schedule.RecurrenceRule();
