@@ -11,10 +11,4 @@ router.post("/register", user.registerUser);
 
 router.post("/logs", user.getLogs);
 
-router.get("/version", (req, res, next) => {
-	res.setHeader('Content-Type', 'application/json');
-	res.send({version: "1.2"});
-});
-
-
 module.exports = router;

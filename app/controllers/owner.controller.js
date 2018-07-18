@@ -6,7 +6,7 @@ const url = "http://" + truffleConfig.host + ':' + truffleConfig.port;
 const Web3 	= require('web3'),
 	  web3 	= new Web3(new Web3.providers.HttpProvider(url));
 
-web3.eth.defaultAccount = '0xba21eac1ae5cafc66e3e5f1e49dea4be6a36c988';
+web3.eth.defaultAccount = '0x527f2e7a22a3038CA8503CE411C168D53bf1f553';
 const etherbase = web3.eth.defaultAccount;
 const gasLimit = 10000000;
 
@@ -36,24 +36,46 @@ exports.burnFrom = (req, res, next) => {
 	});
 }
 
-exports.depositAllowance = (req, res, next) => {
+exports.depositAllowance = async (req, res, next) => {
 	const password = req.body.password;
 	const toKey = req.body.toId;
 	res.setHeader('Content-Type', 'application/json');
-	web3.eth.personal.unlockAccount(etherbase, password, 3).then(() => {
-		return coinInstance.depositAllowance(toKey, {from: etherbase, gas:gasLimit})
-	}).then(() => {
-        res.send({ address: toKey });
+	res.send({address: await deposit(password, toKey)});
+}
+
+exports.scheduledDeposit = async (password, toKey) => {
+	await deposit(password, toKey);
+}
+
+//internal function
+function deposit(password, toKey) {
+	return new Promise((resolve, reject) => {
+	    web3.eth.personal.unlockAccount(etherbase, password, 3).then(() => {
+			return coinInstance.depositAllowance(toKey, {from: etherbase, gas:gasLimit})
+		}).then(() => {
+	        resolve(toKey)
+		});
 	});
 }
 
-exports.resetBalances = (req, res, next) => {
+//internal function
+function reset(password, toKey) {
+	return new Promise((resolve, reject) => {
+	    web3.eth.personal.unlockAccount(etherbase, password, 3).then(() => {
+			return coinInstance.resetBalances(toKey, {from: etherbase, gas:gasLimit})
+		}).then(() => {
+	        resolve(toKey)
+		});
+	});
+}
+
+exports.resetBalances = async (req, res, next) => {
 	const password = req.body.password;
 	const toKey = req.body.toId;
 	res.setHeader('Content-Type', 'application/json');
-	web3.eth.personal.unlockAccount(etherbase, password, 3).then((response) => {
-		return coinInstance.resetBalances(toKey, {from: etherbase, gas:gasLimit})
-	}).then(() => {
-		res.send({ address: toKey });
-	});
+	res.send({address: await reset(password, toKey)});
+}
+
+exports.scheduledReset = async (password, toKey) => {
+	await reset(password, toKey);
 }

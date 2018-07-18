@@ -235,7 +235,7 @@ contract('OhanaCoin', function(accounts) {
 	    await instance.resetBalances(accounts[1], {from: accounts[0]});
 	    let personalBalance = (await instance.getPersonalBalance(accounts[1])).toNumber();
 	    let transferBalance = (await instance.getTransferableBalance(accounts[1])).toNumber();
-	    let newNumTransferred = (await instance.getNumTransferredUsers(accounts[1])).toNumber()
+	    let newNumTransferred = (await instance.getNumTransferredUsers(accounts[1])).toNumber();
 	    assert.equal(newNumTransferred, 0, "account 1's num transfers wasn't reset after transfer");
 	    assert.equal(personalBalance, 0, "account 1's personal balance was't reset to 0");
 	    assert.equal(transferBalance, 30, "account 1's transferable balance was't reset to 30");

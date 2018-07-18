@@ -12,7 +12,6 @@ contract OhanaCoinStorage {
         uint256 transferableBalance;    // Available coins to give to other users
         mapping (address => uint256) transferAmounts; // Amount user has transfered to another user so far in the month
         address[] transferredUsers; // Stores users that this user has transferred to in this month
-        // uint8 numTransfers;             // Amount of transfers each user has made in a quarter
     }
 
     mapping (address => Wallet) public balanceOf;    // Maps user to his/her balances
@@ -84,7 +83,7 @@ contract OhanaCoinStorage {
     function resetTransferredUsers(address user) hasAccess external {
         for (uint i = 0; i < balanceOf[user].transferredUsers.length; i++) {
             address currentUser = balanceOf[user].transferredUsers[i];
-            balanceOf[user].transferAmounts[currentUser] = 0;
+            delete balanceOf[user].transferAmounts[currentUser]; //resets to 0
         }
         delete balanceOf[user].transferredUsers;
     } 

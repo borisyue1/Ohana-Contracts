@@ -8,7 +8,7 @@ const url = "http://" + truffleConfig.host + ':' + truffleConfig.port;
 const Web3 	= require('web3'),
 	  web3 	= new Web3(new Web3.providers.HttpProvider(url));
 
-web3.eth.defaultAccount = '0xBA21eac1ae5caFC66e3e5f1e49DeA4BE6a36c988';
+web3.eth.defaultAccount = '0x527f2e7a22a3038CA8503CE411C168D53bf1f553';
 const etherbase = web3.eth.defaultAccount;
 const gasLimit = 10000000;
 var coinInstance, adminInstance; 
@@ -95,10 +95,10 @@ exports.isAdmin = (req, res, next) => {
 exports.addAdmin = (req, res, next) => {
 	const publicKey = req.body.adminId;
 	const password = req.body.password;
-	const team = req.body.teamId;
+	const team = req.body.team;
 	res.setHeader('Content-Type', 'application/json');
 	web3.eth.personal.unlockAccount(etherbase, password, 10).then(() => {
-		return adminInstance.addAdmin(publicKey, ['0x2c9964f6c3517e06497c1547d795c6dfc86fb273'], {from: etherbase, gasLimit: gasLimit})
+		return adminInstance.addAdmin(publicKey, [team], {from: etherbase, gasLimit: gasLimit})
 	}).then((result) => {
 		res.send({ addAdmin: result });
 	}).catch((error) => {
@@ -114,5 +114,56 @@ exports.removeAdmin = (req, res, next) => {
 		return adminInstance.removeAdmin(publicKey, {from: etherbase, gasLimit: gasLimit})
 	}).then((result) => {
 		res.send({ removeAdmin: result });
+	});
+}
+
+exports.getTeam = (req, res, next) => {
+	const adminKey = req.body.adminId;
+	res.setHeader('Content-Type', 'application/json');
+	adminInstance.getTeamMembers(adminKey, {gas: gasLimit})
+	.then((result) => {
+		res.send({team: result});
+	}, (error) => {
+		res.send({error: error.message});
+	});
+}
+
+exports.isTeamMember = (req, res, next) => {
+	const adminKey = req.body.adminId;
+	const userKey = req.body.userId;
+	res.setHeader('Content-Type', 'application/json');
+	adminInstance.isTeamMember(adminKey, userKey, {gas: gasLimit})
+	.then((result) => {
+		res.send({isTeamMember: result});
+	}, (error) => {
+		res.send({error: error.message});
+	});
+}
+
+exports.addTeamMember = (req, res, next) => {
+	const adminKey = req.body.adminId;
+	const userKey = req.body.userId;
+	const password = req.body.password;
+	res.setHeader('Content-Type', 'application/json');
+	web3.eth.personal.unlockAccount(adminKey, password, 10).then(() => {
+		return adminInstance.addTeamMember(userKey, {from: adminKey, gasLimit: gasLimit})
+	}).then((result) => {
+		res.send({ addTeamMember: result });
+	}).catch((error) => {
+		res.send({error: error.message});
+	});
+}
+
+exports.removeTeamMember = (req, res, next) => {
+	const adminKey = req.body.adminId;
+	const userKey = req.body.userId;
+	const password = req.body.password;
+	res.setHeader('Content-Type', 'application/json');
+	web3.eth.personal.unlockAccount(adminKey, password, 10).then(() => {
+		return adminInstance.removeTeamMember(userKey, {from: adminKey, gasLimit: gasLimit})
+	}).then((result) => {
+		res.send({ removeTeamMember: result });
+	}).catch((error) => {
+		res.send({error: error.message});
 	});
 }

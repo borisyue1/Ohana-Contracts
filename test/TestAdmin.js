@@ -21,13 +21,26 @@ contract('Admin', function(accounts) {
 	// addAdmin(), getAdminUserAllowance(), reduceAdminTransferAllowance()
 	it("should add account 1 as an admin and account 2 as a team member", async () => {
 		let instance = await Admin.deployed();
-		await instance.addAdmin(accounts[1], [accounts[2]], {from: accounts[0]});
+		await instance.addAdmin(accounts[1], [accounts[2], accounts[3]], {from: accounts[0]});
 		assert.equal(await instance.isAdmin(accounts[1]), true, "account 1 wasn't made an admin");
 		let oldAdminUserAllowance = (await instance.getAdminUserAllowance(accounts[1], accounts[2])).toNumber()
 		assert.equal(oldAdminUserAllowance, 10, "account 1 can't transfer to account 2");
 		await instance.reduceAdminTransferAllowance(accounts[1], accounts[2], 5);
 		let newAdminUserAllowance = (await instance.getAdminUserAllowance(accounts[1], accounts[2])).toNumber()
 		assert.equal(newAdminUserAllowance, 5, "account 1 transfer allowance to account 2 wasn't updated");
+	});
+
+	// addTeamMember, isTeamMember, removeTeamMember, resetAllowances
+	it("should remove account 3 as a team member and re-add", async () => {
+		let instance = await Admin.deployed();
+		assert.equal(await instance.isTeamMember(accounts[1], accounts[3]), true, "account 3 isn't a team member but should be");
+		let oldTeam = await instance.getTeamMembers(accounts[1]);
+		assert.equal(oldTeam.length, 2, "account 1 doesn't have 2 members on team");
+		await instance.removeTeamMember(accounts[3], {from: accounts[1]});
+		assert.equal(await instance.isTeamMember(accounts[1], accounts[3]), false, "account 3 is a team member but shouldn't be");
+		let newTeam = await instance.getTeamMembers(accounts[1]);
+		assert.equal(newTeam.length, 1, "account 1 doesn't have 1 member on team");
+		assert.equal(await instance.getAdminUserAllowance(accounts[1], accounts[3]), 0, "account 1 shouldn't be able to transfer to account 3");
 	});
 
 	// addAdmin() error

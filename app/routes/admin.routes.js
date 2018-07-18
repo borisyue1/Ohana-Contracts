@@ -15,5 +15,13 @@ router.post('/addAdmin', admin.addAdmin);
 
 router.delete('/removeAdmin', admin.removeAdmin);
 
+router.post('/team', admin.getTeam);
+
+router.post('/isTeamMember', admin.isTeamMember);
+
+router.patch('/addTeamMember', admin.addTeamMember);
+
+router.patch('/removeTeamMember', admin.removeTeamMember);
+
 
 module.exports = router;

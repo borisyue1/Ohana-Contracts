@@ -42,12 +42,11 @@ contract Admin is Owned {
     function addAdmin(address user, address[] addresses) external onlyAdmin {
         // admins[user] = true;
         // adminData[user].totalTransferableBalance = adminTotalTransferLimit;
-        adminStorage.addAdmin(user); 
+        adminStorage.addAdmin(user, addresses); 
         adminStorage.setAdminTransferableBalance(user, adminTotalTransferLimit);
         for (uint i = 0; i < addresses.length; i++) {
             address currentUser = addresses[i];
-            adminStorage.setAdminUserAllowance(user, currentUser, adminUserTransferLimit); //add team member
-            // adminData[user].allowances[currentUser] = adminUserTransferLimit; 
+            adminStorage.addTeamMember(user, currentUser, adminUserTransferLimit); //add team member
         }
         emit AdminAdded(user);
     }
@@ -59,6 +58,22 @@ contract Admin is Owned {
     function removeAdmin(address user) external onlyAdmin {
         adminStorage.removeAdmin(user);
         emit AdminRemoved(user);
+    }
+
+    function isTeamMember(address admin, address user) external view returns (bool) {
+        return adminStorage.isTeamMember(admin, user);
+    }
+
+    function addTeamMember(address user) external onlyAdmin {
+        adminStorage.addTeamMember(msg.sender, user, adminUserTransferLimit);
+    }
+
+    function removeTeamMember(address user) external onlyAdmin {
+        adminStorage.removeTeamMember(msg.sender, user);
+    }
+
+    function getTeamMembers(address admin) external view returns (address[]) {
+        return adminStorage.getTeamMembers(admin);
     }
 
     function getAdminTransferableBalance(address admin) external view returns (uint256) {
@@ -76,12 +91,15 @@ contract Admin is Owned {
         adminStorage.setAdminUserAllowance(admin, user, adminStorage.getAdminUserAllowance(admin, user).sub(value));
     }
 
-    // ***function reset
     function resetAllowances(address admin) external {
         require(tx.origin == owner, "Not the owner");
         // adminData[admin].totalTransferableBalance = adminTotalTransferLimit;
         adminStorage.setAdminTransferableBalance(admin, adminTotalTransferLimit);
         // adminData[admin].allowances[user] = adminUserTransferLimit; iterate through team members
+        address[] memory team = adminStorage.getTeamMembers(admin);
+        for (uint i = 0; i < team.length; i++) {
+            adminStorage.setAdminUserAllowance(admin, team[i], adminUserTransferLimit);
+        }
     }
 
     function setAdminUserTransferLimit(uint256 limit) external onlyOwner {

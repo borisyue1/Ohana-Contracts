@@ -11,7 +11,8 @@ contract AdminStorage {
     struct AdminData {
         uint256 totalTransferableBalance; // Total amount admin can transfer to users per month (from common pool)
         mapping (address => uint256) allowances; // Amount admin can tranfer to individual users each month (from common pool)
-        // address[] teamMembers; 
+        address[] teamMembers; // Team members that admin has privileges to transfer to
+        mapping (address => bool) isTeamMember; // Indicates whether user is part of team 
     }
 
     mapping (address => bool) public admins; // Stores the admins
@@ -41,16 +42,51 @@ contract AdminStorage {
     	return admins[_user];
     }
 
-    function addAdmin(address user) hasAccess external {
+    function addAdmin(address user, address[] addresses) hasAccess external {
     	require(!admins[user], "User is already an admin");
         admins[user] = true;
-        // teamMembers = addresses;
+        // adminData[user].team.teamMembers = addresses;
     }
 
     function removeAdmin(address admin) hasAccess external {
     	require(admins[admin], "User is not an admin");
     	admins[admin] = false;
+        //can't delete mappings, so have to manually set to false with for loop
+        for (uint i = 0; i < adminData[admin].teamMembers.length; i++) {
+            address user = adminData[admin].teamMembers[i];
+            adminData[admin].isTeamMember[user] = false; 
+        }
         delete adminData[admin];
+    }
+
+    function isTeamMember(address admin, address user) hasAccess external view returns (bool) {
+        return adminData[admin].isTeamMember[user];
+    }
+
+    function addTeamMember(address admin, address user, uint256 value) hasAccess external {
+        require(!adminData[admin].isTeamMember[user], "User is already part of team");
+        // adminData[admin].teamMembers.push(user);
+        // adminData[admin].isTeamMember[user] = true;
+        setAdminUserAllowance(admin, user, value);
+    }
+
+    function removeTeamMember(address admin, address user) hasAccess public {
+        require(adminData[admin].isTeamMember[user], "User is already not part of team");
+        uint256 teamSize = adminData[admin].teamMembers.length;
+        for (uint i = 0; i < teamSize; i++) { //remove from team
+            address currentUser = adminData[admin].teamMembers[i];
+            if (user == currentUser) {
+                adminData[admin].teamMembers[i] = adminData[admin].teamMembers[teamSize - 1];
+                adminData[admin].teamMembers.length--; //automatically clears up last element in array
+                break;
+            }
+        }
+        adminData[admin].isTeamMember[user] = false;
+        delete adminData[admin].allowances[user];
+    }
+
+    function getTeamMembers(address admin) hasAccess external view returns (address[]) {
+        return adminData[admin].teamMembers;
     }
 
     function getAdminTransferableBalance(address admin) hasAccess external view returns (uint256) {
@@ -65,7 +101,7 @@ contract AdminStorage {
         adminData[admin].totalTransferableBalance = value;
     }
 
-    function setAdminUserAllowance(address admin, address user, uint256 value) hasAccess external {
+    function setAdminUserAllowance(address admin, address user, uint256 value) hasAccess public {
         adminData[admin].allowances[user] = value;
     }
 

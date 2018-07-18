@@ -212,10 +212,6 @@ contract OhanaCoin is Owned {
         emit Transfer(0, owner, mintAmount, "");
     }
 
-    // function setUserTransactionsLimit(uint8 limit) external onlyOwner {
-    //     userTransactionsLimit = limit;
-    // }
-
     function setUserTransferAmountLimit(uint256 limit) external onlyOwner {
         userTransferAmountLimit = limit;
     }
@@ -231,10 +227,6 @@ contract OhanaCoin is Owned {
     function getPersonalBalance(address user) public view returns (uint256) {
         return coinStorage.getPersonalBalance(user);
     }
-
-    // function getNumTransfers(address user) external view returns (uint8) {
-    //     return coinStorage.getNumTransfers(user);
-    // }
 
     function getNumTransferredUsers(address user) external view returns (uint256) {
         return coinStorage.getNumTransferredUsers(user);
