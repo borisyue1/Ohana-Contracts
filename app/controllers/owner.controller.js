@@ -1,14 +1,9 @@
-const OhanaCoin   = require('../contracts/OhanaCoin.js');
+const OhanaCoin  = require('../contracts/OhanaCoin.js');
 
-const truffleConfig = require('../../truffle.js').networks.development;
-const url = "http://" + truffleConfig.host + ':' + truffleConfig.port;
-
-const Web3 	= require('web3'),
-	  web3 	= new Web3(new Web3.providers.HttpProvider(url));
-
-web3.eth.defaultAccount = '0x527f2e7a22a3038CA8503CE411C168D53bf1f553';
-const etherbase = web3.eth.defaultAccount;
-const gasLimit = 10000000;
+const config = require('../../config/config.js'),
+	  web3 = config.web3.instance,
+	  etherbase = web3.eth.defaultAccount,
+ 	  gasLimit = config.gasLimit;
 
 var coinInstance; 
 

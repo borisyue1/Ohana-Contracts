@@ -1,14 +1,10 @@
 const Leaderboard = require('../contracts/Leaderboard.js');
 
-const truffleConfig = require('../../truffle.js').networks.development;
-const url = "http://" + truffleConfig.host + ':' + truffleConfig.port;
+const config = require('../../config/config.js'),
+	  web3 = config.web3.instance,
+	  etherbase = web3.eth.defaultAccount,
+ 	  gasLimit = config.gasLimit;
 
-const Web3 	= require('web3'),
-	  web3 	= new Web3(new Web3.providers.HttpProvider(url));
-
-web3.eth.defaultAccount = '0xba21eac1ae5cafc66e3e5f1e49dea4be6a36c988';
-const etherbase = web3.eth.defaultAccount;
-const gasLimit = 10000000;
 var leaderboardInstance; 
 
 Leaderboard.deployed().then((instance) => {

@@ -14,7 +14,7 @@ contract OhanaCoin is Owned {
         require(_to != 0x0, "Invalid send address (0)");
         // Check if sender has transferred too much already
         if (_from != owner)
-            require(coinStorage.getUserTransferAmount(_from, _to).add(_value) <= userTransferAmountLimit, 
+            require(coinStorage.getUserTransferredAmount(_from, _to).add(_value) <= userTransferAmountLimit, 
                 "You have transferred too much to this user already");
         _;
     }
@@ -69,7 +69,7 @@ contract OhanaCoin is Owned {
         // Add the same to the recipient
         coinStorage.setPersonalBalance(_to, coinStorage.getPersonalBalance(_to).add(_value));
         // coinStorage.setNumTransfers(_from, coinStorage.getNumTransfers(_from) + 1);
-        coinStorage.setUserTransferAmount(_from, _to, coinStorage.getUserTransferAmount(_from, _to).add(_value));
+        coinStorage.setUserTransferAmount(_from, _to, coinStorage.getUserTransferredAmount(_from, _to).add(_value));
         emit Transfer(_from, _to, _value, _message);
     }
     
@@ -89,7 +89,7 @@ contract OhanaCoin is Owned {
         // Add the same to the recipient
         coinStorage.setPersonalBalance(_to, coinStorage.getPersonalBalance(_to).add(_value));
         // coinStorage.setNumTransfers(_from, coinStorage.getNumTransfers(_from) + 1);
-        coinStorage.setUserTransferAmount(_from, _to, coinStorage.getUserTransferAmount(_from, _to).add(_value));
+        coinStorage.setUserTransferAmount(_from, _to, coinStorage.getUserTransferredAmount(_from, _to).add(_value));
         emit Transfer(_from, _to, _value, _message);
     }
     
@@ -123,7 +123,11 @@ contract OhanaCoin is Owned {
      */
     function transferFrom(address _to, uint256 _value, string _message) external onlyAdmin returns (bool) {
         require(_value <= admin.getAdminTransferableBalance(msg.sender), "Admin has exceeded total transferable tokens limit");   
-        require(_value <= admin.getAdminUserAllowance(msg.sender, _to), "Admin has transferred too many tokens to that user already");  
+        require(_value <= admin.getAdminUserAllowance(msg.sender, _to), "Admin has transferred too many tokens to that user already"); 
+        // if (_value > admin.getAdminTransferableBalance(msg.sender)) {
+        //     emit Error("Admin has exceeded total transferable tokens limit");
+        //     return false;
+        // } 
         admin.reduceAdminTransferAllowance(msg.sender, _to, _value); // Update the balances/allownances
         _transferableToPersonal(owner, _to, _value, _message);         // Transfer to spending balance
         return true;
@@ -138,6 +142,8 @@ contract OhanaCoin is Owned {
      * @param _value The amount of tokens to burn
      */
     function adminBurnFrom(address _from, uint256 _value) external onlyAdmin returns (bool) {
+        require(_value <= admin.getAdminBurnBalance(msg.sender), "Trying to burn more over limit");
+        admin.setAdminBurnBalance(msg.sender, admin.getAdminBurnBalance(msg.sender).add(_value));
         coinStorage.setPersonalBalance(_from, coinStorage.getPersonalBalance(_from).sub(_value));
         coinStorage.setTotalSupply(coinStorage.totalSupply().sub(_value));
         emit Burn(_from, _value, "Personal", "Admin");
@@ -229,7 +235,15 @@ contract OhanaCoin is Owned {
     }
 
     function getNumTransferredUsers(address user) external view returns (uint256) {
-        return coinStorage.getNumTransferredUsers(user);
+        return coinStorage.getTransferredUsers(user).length;
+    }
+
+    function getTransferredUsers(address user) external view returns (address[]) {
+        return coinStorage.getTransferredUsers(user);
+    }
+
+    function getUserTransferredAmount(address from, address to) external view returns (uint256) {
+        return coinStorage.getUserTransferredAmount(from, to);
     }
 
     function getTotalSupply() external view returns (uint256) {

@@ -2,15 +2,11 @@ const Admin 	= require('../contracts/Admin.js'),
 	  OhanaCoin = require('../contracts/OhanaCoin.js'),
 	  Leaderboard = require('../contracts/Leaderboard.js');
 
-const truffleConfig = require('../../truffle.js').networks.development;
-const url = "http://" + truffleConfig.host + ':' + truffleConfig.port;
-
-const Web3 	= require('web3'),
-	  web3 	= new Web3(new Web3.providers.HttpProvider(url));
-
-web3.eth.defaultAccount = '0x527f2e7a22a3038CA8503CE411C168D53bf1f553';
-const etherbase = web3.eth.defaultAccount;
-const gasLimit = 10000000;
+const config = require('../../config/config.js'),
+	  web3 = config.web3.instance,
+	  etherbase = web3.eth.defaultAccount,
+ 	  gasLimit = config.gasLimit;
+ 	  
 var coinInstance, adminInstance; 
 
 OhanaCoin.deployed().then((instance) => {
@@ -25,7 +21,8 @@ Leaderboard.deployed().then((instance) => {
 	leaderboardInstance = instance;
 });
 
-exports.getAdminTransferableBalance = (req, res, next) => {
+// READ VALUES
+exports.getTransferableBalance = (req, res, next) => {
 	const publicKey = req.body.adminId;
 	adminInstance.getAdminTransferableBalance(publicKey)
 	.then((result) => {
@@ -36,7 +33,19 @@ exports.getAdminTransferableBalance = (req, res, next) => {
 	}); 
 }
 
-exports.getAdminUserAllowance = (req, res, next) => {
+exports.getBurnBalance = (req, res, next) => {
+	const adminKey = req.body.adminId;
+	const userKey = req.body.userId;
+	adminInstance.getAdminBurnBalance(adminKey, userKey)
+	.then((result) => {
+	    res.setHeader('Content-Type', 'application/json');
+        res.send({ balance: result.toNumber() });
+	}, (error) => {
+	    res.send({ error: error.message});
+	}); 
+}
+
+exports.getUserAllowance = (req, res, next) => {
 	const adminKey = req.body.adminId;
 	const userKey = req.body.userId;
 	adminInstance.getAdminUserAllowance(adminKey, userKey)
@@ -44,10 +53,65 @@ exports.getAdminUserAllowance = (req, res, next) => {
 	    res.setHeader('Content-Type', 'application/json');
         res.send({ balance: result.toNumber() });
 	}, (error) => {
-	    res.send({ errorrr: error.message});
+	    res.send({ error: error.message});
 	}); 
 }
 
+exports.getUserTransferLimit = (req, res, next) => {
+	adminInstance.getAdminUserTransferLimit()
+	.then((result) => {
+	    res.setHeader('Content-Type', 'application/json');
+        res.send({ balance: result.toNumber() });
+	}, (error) => {
+	    res.send({ error: error.message});
+	}); 
+}
+
+exports.getTotalTransferLimit = (req, res, next) => {
+	adminInstance.getAdminTotalTransferLimit()
+	.then((result) => {
+	    res.setHeader('Content-Type', 'application/json');
+        res.send({ balance: result.toNumber() });
+	}, (error) => {
+	    res.send({ error: error.message});
+	}); 
+}
+
+exports.getTotalBurnLimit = (req, res, next) => {
+	adminInstance.getAdminTotalBurnLimit()
+	.then((result) => {
+	    res.setHeader('Content-Type', 'application/json');
+        res.send({ balance: result.toNumber() });
+	}, (error) => {
+	    res.send({ error: error.message});
+	}); 
+}
+
+exports.isAdmin = (req, res, next) => {
+	const publicKey = req.body.adminId;
+	res.setHeader('Content-Type', 'application/json');
+	adminInstance.isAdmin(publicKey, {gas: gasLimit})
+	.then((result) => {
+		res.send({ isAdmin: result });
+	}, (error) => {
+		res.send({error: error.message});
+	});
+}
+
+exports.isTeamMember = (req, res, next) => {
+	const adminKey = req.body.adminId;
+	const userKey = req.body.userId;
+	res.setHeader('Content-Type', 'application/json');
+	adminInstance.isTeamMember(adminKey, userKey, {gas: gasLimit})
+	.then((result) => {
+		res.send({isTeamMember: result});
+	}, (error) => {
+		res.send({error: error.message});
+	});
+}
+
+
+// EDIT VALUES
 exports.transferFrom = (req, res, next) => {
 	const fromKey = req.body.adminId;
 	const toKey = req.body.toId;
@@ -81,24 +145,13 @@ exports.burnFrom = (req, res, next) => {
 	});
 }
 
-exports.isAdmin = (req, res, next) => {
-	const publicKey = req.body.adminId;
-	res.setHeader('Content-Type', 'application/json');
-	adminInstance.isAdmin(publicKey, {gas: gasLimit})
-	.then((result) => {
-		res.send({ isAdmin: result });
-	}, (error) => {
-		res.send({error: error.message});
-	});
-}
-
 exports.addAdmin = (req, res, next) => {
 	const publicKey = req.body.adminId;
 	const password = req.body.password;
 	const team = req.body.team;
 	res.setHeader('Content-Type', 'application/json');
 	web3.eth.personal.unlockAccount(etherbase, password, 10).then(() => {
-		return adminInstance.addAdmin(publicKey, [team], {from: etherbase, gasLimit: gasLimit})
+		return adminInstance.addAdmin(publicKey, [team], {from: etherbase, gas: gasLimit})
 	}).then((result) => {
 		res.send({ addAdmin: result });
 	}).catch((error) => {
@@ -111,7 +164,7 @@ exports.removeAdmin = (req, res, next) => {
 	const password = req.body.password;
 	res.setHeader('Content-Type', 'application/json');
 	web3.eth.personal.unlockAccount(etherbase, password, 10).then(() => {
-		return adminInstance.removeAdmin(publicKey, {from: etherbase, gasLimit: gasLimit})
+		return adminInstance.removeAdmin(publicKey, {from: etherbase, gas: gasLimit})
 	}).then((result) => {
 		res.send({ removeAdmin: result });
 	});
@@ -128,17 +181,6 @@ exports.getTeam = (req, res, next) => {
 	});
 }
 
-exports.isTeamMember = (req, res, next) => {
-	const adminKey = req.body.adminId;
-	const userKey = req.body.userId;
-	res.setHeader('Content-Type', 'application/json');
-	adminInstance.isTeamMember(adminKey, userKey, {gas: gasLimit})
-	.then((result) => {
-		res.send({isTeamMember: result});
-	}, (error) => {
-		res.send({error: error.message});
-	});
-}
 
 exports.addTeamMember = (req, res, next) => {
 	const adminKey = req.body.adminId;
@@ -146,7 +188,7 @@ exports.addTeamMember = (req, res, next) => {
 	const password = req.body.password;
 	res.setHeader('Content-Type', 'application/json');
 	web3.eth.personal.unlockAccount(adminKey, password, 10).then(() => {
-		return adminInstance.addTeamMember(userKey, {from: adminKey, gasLimit: gasLimit})
+		return adminInstance.addTeamMember(userKey, {from: adminKey, gas: gasLimit})
 	}).then((result) => {
 		res.send({ addTeamMember: result });
 	}).catch((error) => {
@@ -160,7 +202,7 @@ exports.removeTeamMember = (req, res, next) => {
 	const password = req.body.password;
 	res.setHeader('Content-Type', 'application/json');
 	web3.eth.personal.unlockAccount(adminKey, password, 10).then(() => {
-		return adminInstance.removeTeamMember(userKey, {from: adminKey, gasLimit: gasLimit})
+		return adminInstance.removeTeamMember(userKey, {from: adminKey, gas: gasLimit})
 	}).then((result) => {
 		res.send({ removeTeamMember: result });
 	}).catch((error) => {

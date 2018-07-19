@@ -1,16 +1,11 @@
 const OhanaCoin   = require('../contracts/OhanaCoin.js'),
 	  Leaderboard = require('../contracts/Leaderboard.js');
 
-const truffleConfig = require('../../truffle.js').networks.development;
-const url = "http://" + truffleConfig.host + ':' + truffleConfig.port;
+const config = require('../../config/config.js'),
+	  web3 = config.web3.instance,
+	  etherbase = web3.eth.defaultAccount,
+ 	  gasLimit = config.gasLimit;
 
-const Web3 	= require('web3'),
-	  web3 	= new Web3(new Web3.providers.HttpProvider(url));
-// 0xba21eac1ae5cafc66e3e5f1e49dea4be6a36c988
-// 0x527f2e7a22a3038CA8503CE411C168D53bf1f553
-web3.eth.defaultAccount = '0xBA21eac1ae5caFC66e3e5f1e49DeA4BE6a36c988';
-const etherbase = web3.eth.defaultAccount;
-const gasLimit = 1000000;
 var coinInstance, leaderboardInstance; 
 var personalBalance, transferableBalance;
 
@@ -50,6 +45,50 @@ exports.getBalances = (req, res, next) => {
 	}); 
 }
 
+exports.getLogs = (req, res, next) => {
+	const publicKey = req.body.userId;
+	res.setHeader('Content-Type', 'application/json');
+	coinInstance.allEvents({
+		// filter: {to: '0x2c9964f6c3517e06497c1547d795c6dfc86fb273'}, 
+		fromBlock: 0, 
+		toBlock: "latest",
+		// from: "0x2c9964f6c3517e06497c1547d795c6dfc86fb273"
+		// address: '0x2c9964f6c3517e06497c1547d795c6dfc86fb273'
+	})
+	.get((error, events) => {
+		//manually get five latest events pertaining to specified user since filter parameter doesn't work 
+		let userEvents = []
+		for (var i = events.length - 1; userEvents.length < 5 && i >= 0; i--) {
+			if (events[i].args.from == publicKey || events[i].args.to == publicKey) 
+				userEvents.push(events[i]);
+		}
+		res.send({events: userEvents});
+	});
+}
+
+exports.getTransferredUsers = (req, res, next) => {
+	const publicKey = req.body.userId;
+	res.setHeader('Content-Type', 'application/json');
+	coinInstance.getTransferredUsers(publicKey)
+	.then((users) => {
+        res.send({ users: users });
+	}, (error) => {
+		res.send({error: error.message})
+	});
+}
+
+exports.getUserTransferredAmount = (req, res, next) => {
+	const from = req.body.fromId;
+	const to = req.body.toId;
+	res.setHeader('Content-Type', 'application/json');
+	coinInstance.getUserTransferredAmount(from, to)
+	.then((amount) => {
+        res.send({ amount: amount });
+	}, (error) => {
+		res.send({error: error.message})
+	});
+}
+
 exports.transferTo = (req, res, next) => {
 	const fromKey = req.body.userId;
 	const toKey = req.body.toId;
@@ -73,7 +112,7 @@ exports.transferTo = (req, res, next) => {
 
 exports.registerUser = (req, res, next) => {
 	const password = req.body.password;
-	web3.eth.personal.unlockAccount(etherbase, "root", 10).then(() => {
+	web3.eth.personal.unlockAccount(etherbase, password, 10).then(() => {
 		return web3.eth.personal.newAccount(password);
 	}).then((address) => {
 		web3.eth.sendTransaction({
@@ -81,7 +120,7 @@ exports.registerUser = (req, res, next) => {
 		   to: address,
 		   value: web3.utils.toWei('1'),
 		   gas: gasLimit,
-		   gasPrice: 1,
+		   gasPrice: 0,
 		})
 		.on('receipt', (receipt) => {
 			// if (num == 3) { //3 blocks of confirmation for security (12 is max)
@@ -102,23 +141,3 @@ exports.registerUser = (req, res, next) => {
 	});
 }
 
-exports.getLogs = (req, res, next) => {
-	const publicKey = req.body.userId;
-	res.setHeader('Content-Type', 'application/json');
-	coinInstance.allEvents({
-		// filter: {to: '0x2c9964f6c3517e06497c1547d795c6dfc86fb273'}, 
-		fromBlock: 0, 
-		toBlock: "latest",
-		// from: "0x2c9964f6c3517e06497c1547d795c6dfc86fb273"
-		// address: '0x2c9964f6c3517e06497c1547d795c6dfc86fb273'
-	})
-	.get((error, events) => {
-		//manually get five latest events pertaining to specified user since filter parameter doesn't work 
-		let userEvents = []
-		for (var i = events.length - 1; userEvents.length < 5 && i >= 0; i--) {
-			if (events[i].args.from == publicKey || events[i].args.to == publicKey) 
-				userEvents.push(events[i]);
-		}
-		res.send({events: userEvents});
-	});
-}

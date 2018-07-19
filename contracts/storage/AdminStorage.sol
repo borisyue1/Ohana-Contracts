@@ -10,6 +10,7 @@ contract AdminStorage {
     // Stores an admin's transfer allowances
     struct AdminData {
         uint256 totalTransferableBalance; // Total amount admin can transfer to users per month (from common pool)
+        uint256 totalBurnedBalance; //Amount admin has burned from users this month
         mapping (address => uint256) allowances; // Amount admin can tranfer to individual users each month (from common pool)
         address[] teamMembers; // Team members that admin has privileges to transfer to
         mapping (address => bool) isTeamMember; // Indicates whether user is part of team 
@@ -65,22 +66,16 @@ contract AdminStorage {
 
     function addTeamMember(address admin, address user, uint256 value) hasAccess external {
         require(!adminData[admin].isTeamMember[user], "User is already part of team");
-        // adminData[admin].teamMembers.push(user);
-        // adminData[admin].isTeamMember[user] = true;
+        adminData[admin].teamMembers.push(user);
+        adminData[admin].isTeamMember[user] = true;
         setAdminUserAllowance(admin, user, value);
     }
 
-    function removeTeamMember(address admin, address user) hasAccess public {
+    function removeTeamMember(address admin, address user, uint256 index) hasAccess public {
         require(adminData[admin].isTeamMember[user], "User is already not part of team");
         uint256 teamSize = adminData[admin].teamMembers.length;
-        for (uint i = 0; i < teamSize; i++) { //remove from team
-            address currentUser = adminData[admin].teamMembers[i];
-            if (user == currentUser) {
-                adminData[admin].teamMembers[i] = adminData[admin].teamMembers[teamSize - 1];
-                adminData[admin].teamMembers.length--; //automatically clears up last element in array
-                break;
-            }
-        }
+        adminData[admin].teamMembers[index] = adminData[admin].teamMembers[teamSize - 1];
+        adminData[admin].teamMembers.length--; //automatically clears up last element in array
         adminData[admin].isTeamMember[user] = false;
         delete adminData[admin].allowances[user];
     }
@@ -91,6 +86,10 @@ contract AdminStorage {
 
     function getAdminTransferableBalance(address admin) hasAccess external view returns (uint256) {
         return adminData[admin].totalTransferableBalance;
+    }
+
+    function getAdminBurnBalance(address admin) hasAccess external view returns (uint256) {
+        return adminData[admin].totalBurnedBalance;
     }
 
     function getAdminUserAllowance(address admin, address user) hasAccess external view returns (uint256) {
@@ -104,6 +103,10 @@ contract AdminStorage {
     function setAdminUserAllowance(address admin, address user, uint256 value) hasAccess public {
         adminData[admin].allowances[user] = value;
     }
+
+    function setAdminBurnBalance(address admin, uint256 value) hasAccess public {
+        adminData[admin].totalBurnedBalance = value;
+    }    
 
 
 }

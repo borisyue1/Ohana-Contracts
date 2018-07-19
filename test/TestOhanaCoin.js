@@ -203,7 +203,20 @@ contract('OhanaCoin', function(accounts) {
 	    assert.equal(oldPersonalBalance - burnAmount, newPersonalBalance, "didn't burn 10 tokens in account 2's personal balance");
 	});
 
-	// // adminBurnFrom()
+	// adminBurnFrom()
+	it("should error because account 1 is trying to burn too much from account 2", async () => {
+	    let instance = await OhanaCoin.deployed();
+	    let admin = await Admin.deployed();
+	    try {
+	    	await instance.adminBurnFrom(accounts[2], 1000, {from: accounts[1]});
+	    	// The line will only be hit if no error is thrown above!
+    		throw new Error("Expected an error and didn't get one!");
+	    } catch (err) {
+	    	assert.notEqual(err.message, "Expected an error and didn't get one!", "Got the wrong error");
+	    }	
+	});
+
+	// adminBurnFrom()
 	it("should error because account 1 isn't authorized to burn tokens from account 2's personal balance", async () => {
 	    let instance = await OhanaCoin.deployed();
 	    let admin = await Admin.deployed();

@@ -5,5 +5,6 @@ router.get("/nextDeposit", scheduler.nextDeposit);
 
 router.get("/nextReset", scheduler.nextReset);
 
+router.post("/setResetDate", scheduler.setResetDate);
 
 module.exports = router;

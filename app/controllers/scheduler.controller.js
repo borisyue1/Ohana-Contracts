@@ -1,17 +1,47 @@
-const schedule 	= require('node-schedule');
-const owner = require('./owner.controller.js');
+const schedule 	= require('node-schedule'),
+ 	  owner = require('./owner.controller.js'),
+ 	  config = require('../../config/config.js');
 
+const web3 = config.web3.instance,
+	  etherbase = web3.eth.defaultAccount,
+ 	  gasLimit = config.gasLimit;
+
+var accounts = web3.eth.getAccounts().then((accounts) => {
+	return accounts;
+});
+
+// MONTH STARTS AT 0
 var initDepositScheduler = () => {
-	var scheduler = schedule.scheduleJob("* * 1 * *", function() {
-	  	owner.scheduledDeposit("root", "0xCe47a8E60615C2d87486E8D1631d71ECE7Df83Fe");
+	let scheduler = schedule.scheduleJob("* * 1 * *", () => {
+		accounts.then((result) => {
+			result.forEach((account) => {
+				if (account != etherbase)
+					owner.scheduledDeposit("root", account);
+				// web3.eth.sendTransaction({
+				//    from: etherbase,
+				//    to: address,
+				//    value: web3.utils.toWei('1'),
+				//    gas: gasLimit,
+				//    gasPrice: 0,
+				// })
+				// .on('receipt', (receipt) => {
+					
+				// })
+			});
+		});
 	});
 	return scheduler;
 }
 
 var initResetScheduler = () => {
-	var scheduler = schedule.scheduleJob("* * * */4 * ", function() { //every four months
-	  	owner.scheduledReset("root", "0xCe47a8E60615C2d87486E8D1631d71ECE7Df83Fe");
-	});
+	let scheduler = schedule.scheduleJob("* * * */4 *", () => { //every four months
+	  	accounts.then((result) => {
+			result.forEach((account) => {
+				if (account != etherbase)
+					owner.scheduledReset("root", account);
+			});
+		});
+	})
 	return scheduler;
 }
 
@@ -42,4 +72,14 @@ exports.nextReset = (req, res, next) => {
 	let timeDiff = getTimeDifference(nextDate, Date.now());
 	res.setHeader('Content-Type', 'application/json');
 	res.send({Days: + timeDiff[0], Hours: + timeDiff[1], "Next Reset": mmddyy});
+}
+
+exports.setResetDate = (req, res, next) => {
+	const year = req.body.year,
+	 	  month = req.body.month,
+	 	  day = req.body.day,
+	 	  newDate = new Date(year, month - 1, day);
+	resetScheduler.reschedule(newDate);
+	res.setHeader('Content-Type', 'application/json');
+	res.send({date: newDate});
 }

@@ -8,9 +8,11 @@ module.exports = {
 			network_id: "*"
 	    }, 
 	    production: {
-	    	host: "34.230.166.144",
-			port: 80,
-			network_id: "*"
+	    	host: "ec2-52-24-149-138.us-west-2.compute.amazonaws.com",
+			port: 8545,
+			network_id: "*",
+			gas: 7000000,
+			gasPrice: 0
 	    }
     }
 };
