@@ -250,6 +250,14 @@ contract OhanaCoin is Owned {
         return coinStorage.totalSupply();
     }
 
+    function getPastBalances(address user) external view returns (uint256[], uint256) {
+        return coinStorage.getPastBalances(user);
+    }
+
+    function storeBalance(address user) external onlyOwner {
+        coinStorage.storeBalance(user);
+    } 
+
     /** 
     * Fallback function to prevent accidental sending of ether to this contract
     */

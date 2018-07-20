@@ -12,6 +12,8 @@ contract OhanaCoinStorage {
         uint256 transferableBalance;    // Available coins to give to other users
         mapping (address => uint256) transferAmounts; // Amount user has transfered to another user so far in the month
         address[] transferredUsers; // Stores users that this user has transferred to in this month
+        uint256[] pastTenBalances; // Stores users balances from past 10 days
+        uint256 balancesStartIndex; // Stores index of oldest balance in pastTenBalances
     }
 
     mapping (address => Wallet) public balanceOf;    // Maps user to his/her balances
@@ -57,6 +59,10 @@ contract OhanaCoinStorage {
         return balanceOf[user].transferredUsers;
     }
 
+    function getPastBalances(address user) external view returns (uint256[], uint256) {
+        return (balanceOf[user].pastTenBalances, balanceOf[user].balancesStartIndex);
+    }
+
     function setUserTransferAmount(address from, address to, uint256 value) hasAccess external {
         if (balanceOf[from].transferAmounts[to] == 0) {
             balanceOf[from].transferredUsers.push(to); // haven't transferred to that user before, add to list
@@ -78,6 +84,16 @@ contract OhanaCoinStorage {
 
     function setTotalSupply(uint256 amount) hasAccess external {
         totalSupply = amount;
+    }
+
+    function storeBalance(address user) hasAccess external {
+        uint arrSize = balanceOf[user].pastTenBalances.length;
+        uint256 startIndex = balanceOf[user].balancesStartIndex;
+        if (arrSize >= 10) {
+            delete balanceOf[user].pastTenBalances[startIndex];
+            balanceOf[user].balancesStartIndex += 1;
+        }
+        balanceOf[user].pastTenBalances.push(balanceOf[user].personalBalance); //add current balance to the front of array
     }
 
     function resetTransferredUsers(address user) hasAccess external {

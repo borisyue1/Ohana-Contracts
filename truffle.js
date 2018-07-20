@@ -7,12 +7,12 @@ module.exports = {
 			port: 7545,
 			network_id: "*"
 	    }, 
-	    production: {
-	    	host: "ec2-52-24-149-138.us-west-2.compute.amazonaws.com",
+	    aws: {
+	    	host: "ec2-34-217-144-22.us-west-2.compute.amazonaws.com",
 			port: 8545,
 			network_id: "*",
-			gas: 7000000,
-			gasPrice: 0
+			gas: 8000000,
+			gasPrice: 1
 	    }
     }
 };

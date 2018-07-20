@@ -74,3 +74,9 @@ exports.resetBalances = async (req, res, next) => {
 exports.scheduledReset = async (password, toKey) => {
 	await reset(password, toKey);
 }
+
+exports.storeBalance = (password, toKey) => {
+	web3.eth.personal.unlockAccount(etherbase, password, 3).then(() => {
+		coinInstance.storeBalance(toKey, {from:etherbase, gas:gasLimit});
+	});
+}

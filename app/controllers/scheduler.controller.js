@@ -45,6 +45,19 @@ var initResetScheduler = () => {
 	return scheduler;
 }
 
+// Stores the previous 10 days of balances for users, gets called at 12 AM everyday to update balances
+var initBalanceTrackScheduler = () => {
+	let scheduler = schedule.scheduleJob("0 0 12 * 1-7", () => { //every four months
+	  	accounts.then((result) => {
+			result.forEach((account) => {
+				if (account != etherbase)
+					owner.storeBalance("root", account);
+			});
+		});
+	})
+	return scheduler;
+}
+
 // Returns difference between two dates in days and hours
 var getTimeDifference = (firstDate, secondDate) => {
 	let currentDate = new Date(firstDate),
@@ -57,6 +70,7 @@ var getTimeDifference = (firstDate, secondDate) => {
 
 var depositScheduler = initDepositScheduler();
 var resetScheduler = initResetScheduler();
+var balanceTrackerScheduler = initBalanceTrackScheduler();
 
 exports.nextDeposit = (req, res, next) => {
 	let nextDate = new Date(depositScheduler.nextInvocation()),

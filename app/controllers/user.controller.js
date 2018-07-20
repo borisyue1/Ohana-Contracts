@@ -89,6 +89,25 @@ exports.getUserTransferredAmount = (req, res, next) => {
 	});
 }
 
+exports.getPastBalances = (req, res, next) => {
+	const publicKey = req.body.userId;
+	res.setHeader('Content-Type', 'application/json');
+	coinInstance.getPastBalances(publicKey)
+	.then((result) => {
+		let pastTen = [];
+		let startIndex = result[1];
+		let pastBalances = result[0];
+		// add to array in reverse order so that latest balances are first
+		for (var i = startIndex + 10; i > startIndex && i >= 0; i--) {
+			if (pastBalances[i] != null)
+				pastTen.push(pastBalances[i]); 
+		}
+        res.send({ pastTen: pastTen});
+	}, (error) => {
+		res.send({error: error.message})
+	});
+}
+
 exports.transferTo = (req, res, next) => {
 	const fromKey = req.body.userId;
 	const toKey = req.body.toId;
@@ -125,9 +144,8 @@ exports.registerUser = (req, res, next) => {
 		.on('receipt', (receipt) => {
 			// if (num == 3) { //3 blocks of confirmation for security (12 is max)
 			//temporarily unlock account to make transaction
-			web3.eth.personal.unlockAccount(address, password, 10).then((response) => {
-				return coinInstance.depositAllowance(address, {from: etherbase, gas:gasLimit});
-			}).then(() => {
+			coinInstance.depositAllowance(address, {from: etherbase, gas:gasLimit})
+			.then(() => {
 				res.setHeader('Content-Type', 'application/json');
 	        	res.send({ address: address });
 			}).catch((error) => {

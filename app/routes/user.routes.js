@@ -12,6 +12,7 @@ router.post("/transferredUsers", user.getTransferredUsers);
 
 router.post("/userTransferredAmount", user.getUserTransferredAmount);
 
+router.post("/pastBalances", user.getPastBalances);
 
 
 // EDIT VALUES
