@@ -17,6 +17,18 @@ Leaderboard.deployed().then((instance) => {
 	leaderboardInstance = instance;
 });
 
+const Contract = require("truffle-contract");
+
+const abi  = require('../../build/contracts/OhanaCoinStorage.json');
+
+// Read JSON and attach RPC connection (Provider)
+const storage = Contract(abi);
+storage.setProvider(web3.currentProvider);
+
+storage.deployed().then((instance) => {
+	storageInstance = instance;
+	coinInstance.getTransferableBalance("0x60b60b61e1400db6028abf8bf43e1e8a3c911fb0").then(console.log)
+});
 // IMPLEMENT ERROR HANDLING
 
 exports.getNumUsers = (req, res, next) => {
@@ -131,31 +143,38 @@ exports.transferTo = (req, res, next) => {
 
 exports.registerUser = (req, res, next) => {
 	const password = req.body.password;
-	web3.eth.personal.unlockAccount(etherbase, password, 10).then(() => {
-		return web3.eth.personal.newAccount(password);
-	}).then((address) => {
-		web3.eth.sendTransaction({
-		   from: etherbase,
-		   to: address,
-		   value: web3.utils.toWei('1'),
-		   gas: gasLimit,
-		   gasPrice: 0,
-		})
-		.on('receipt', (receipt) => {
-			// if (num == 3) { //3 blocks of confirmation for security (12 is max)
-			//temporarily unlock account to make transaction
-			coinInstance.depositAllowance(address, {from: etherbase, gas:gasLimit})
-			.then(() => {
-				res.setHeader('Content-Type', 'application/json');
-	        	res.send({ address: address });
-			}).catch((error) => {
-				res.send({ "deposit error": error.message});
-			});;
-			// } 
-		})
-		.on('error', (error) => {
-			res.send({ "send error": error.message});
+	web3.eth.personal.newAccount(password)
+	.then((address) => {
+		coinInstance.depositAllowance(address, {from: etherbase, gas:gasLimit})
+		.then(() => {
+			res.setHeader('Content-Type', 'application/json');
+        	res.send({ address: address });
+		}).catch((error) => {
+			res.send({ "deposit error": error.message});
 		});
+		// web3.eth.sendTransaction({
+		//    from: etherbase,
+		//    to: address,
+		//    value: web3.utils.toWei('1'),
+		//    gas: gasLimit,
+		//    gasPrice: 0,
+		// })
+		// .on('receipt', (receipt) => {
+		// 	// if (num == 3) { //3 blocks of confirmation for security (12 is max)
+		// 	//temporarily unlock account to make transaction
+		// 	console.log(receipt);
+		// 	coinInstance.depositAllowance(address, {from: etherbase, gas:gasLimit})
+		// 	.then(() => {
+		// 		res.setHeader('Content-Type', 'application/json');
+	 //        	res.send({ address: address });
+		// 	}).catch((error) => {
+		// 		res.send({ "deposit error": error.message});
+		// 	});
+		// 	// } 
+		// })
+		// .on('error', (error) => {
+		// 	res.send({ "send error": error.message});
+		// });
 	});
 }
 

@@ -19,7 +19,7 @@ module.exports = function(deployer) {
   		// Give Admin contract access to AdminStorage functions
   		instance.allowAccess(Admin.address);
   	});
-  	return deployer.deploy(OhanaCoin, Admin.address, OhanaCoinStorage.address, {value:web3.toWei(20, 'ether')});
+  	return deployer.deploy(OhanaCoin, Admin.address, OhanaCoinStorage.address, {value:web3.toWei('20', 'ether')});
   }).then(() => {
   	OhanaCoinStorage.deployed().then((instance) => {
   		// Give OhanaCoin contract access to OhanaCoinStorage functions

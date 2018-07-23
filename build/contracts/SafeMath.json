@@ -305,7 +305,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2219,
+                      "referencedDeclaration": 2661,
                       "src": "567:6:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -713,10 +713,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2233,
-                        2234
+                        2675,
+                        2676
                       ],
-                      "referencedDeclaration": 2234,
+                      "referencedDeclaration": 2676,
                       "src": "961:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -1046,7 +1046,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2219,
+                      "referencedDeclaration": 2661,
                       "src": "1185:6:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -1504,7 +1504,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2219,
+                      "referencedDeclaration": 2661,
                       "src": "567:6:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -1912,10 +1912,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2233,
-                        2234
+                        2675,
+                        2676
                       ],
-                      "referencedDeclaration": 2234,
+                      "referencedDeclaration": 2676,
                       "src": "961:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2245,7 +2245,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2219,
+                      "referencedDeclaration": 2661,
                       "src": "1185:6:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -2410,19 +2410,25 @@
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {
+    "69": {
+      "events": {},
+      "links": {},
+      "address": "0xf6f0acea31f3c61a6975ac90b3e0797cb8834a8d",
+      "transactionHash": "0x7101500eb879791dded47e6c69b28df7acf93c6d279bd1e1274a3b7159aafd90"
+    },
     "500": {
       "events": {},
       "links": {},
-      "address": "0x64f3b29eabcee2e6ae7868c78489b4a237cd26d2",
-      "transactionHash": "0x7ce1f11e662af9c4c18d90bfc9ce55707bede9c200908a1b040f6dfa2f05cdcf"
+      "address": "0x2c570f8f12d02960851fa3330628191f35bc563e",
+      "transactionHash": "0x32a46a1323a97e75bb2d57d0a40b30cb87e765129e743948a0c5c244e547c02c"
     },
     "40579": {
       "events": {},
       "links": {},
-      "address": "0xfb3cd3f31dc365199de71e399f81648cff6e4547",
-      "transactionHash": "0x43db116df021ee094c3e7a26e772f50ac849da054ba6ddb1da76a442b692dbde"
+      "address": "0xf0ca6098ea1e5acae258ba8f40f806a0fda20b13",
+      "transactionHash": "0x84ecc7bb1f81bcef31e525c09b68051ea0836686cbb0719780222d6eaeb51bfe"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-07-20T22:55:21.141Z"
+  "updatedAt": "2018-07-23T20:56:21.087Z"
 }

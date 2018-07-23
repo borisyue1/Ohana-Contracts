@@ -116,7 +116,7 @@
                               "name": "abi",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2217,
+                              "referencedDeclaration": 2659,
                               "src": "312:3:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_abi",
@@ -163,7 +163,7 @@
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2224,
+                        "referencedDeclaration": 2666,
                         "src": "302:9:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -219,7 +219,7 @@
                               "name": "abi",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2217,
+                              "referencedDeclaration": 2659,
                               "src": "346:3:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_abi",
@@ -266,7 +266,7 @@
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2224,
+                        "referencedDeclaration": 2666,
                         "src": "336:9:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -499,7 +499,7 @@
                               "name": "abi",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2217,
+                              "referencedDeclaration": 2659,
                               "src": "312:3:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_abi",
@@ -546,7 +546,7 @@
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2224,
+                        "referencedDeclaration": 2666,
                         "src": "302:9:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -602,7 +602,7 @@
                               "name": "abi",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2217,
+                              "referencedDeclaration": 2659,
                               "src": "346:3:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_abi",
@@ -649,7 +649,7 @@
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2224,
+                        "referencedDeclaration": 2666,
                         "src": "336:9:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -802,19 +802,25 @@
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {
+    "69": {
+      "events": {},
+      "links": {},
+      "address": "0x5d46364419a2b8f762f994f866663366cd395c68",
+      "transactionHash": "0x85049eb384d2512962789a868d86bb604fbdfbe38bb02727a594135c0f0c5c75"
+    },
     "500": {
       "events": {},
       "links": {},
-      "address": "0x4e8529f6711007a191c33cbfbd5d44e02666a629",
-      "transactionHash": "0xc140509ecd08fd68d5e3607108a1be600a2579beb118f63f84b04f3d4264a5ca"
+      "address": "0xe681693b1e000acd42453542faf56ed1a53868f8",
+      "transactionHash": "0x28f000ca728902dd7256f8cbac42eb90bea784cee886a1d175011e49fbde2ac7"
     },
     "40579": {
       "events": {},
       "links": {},
-      "address": "0x01d42dde2567cad8914adf59bddd99a70ed0a681",
-      "transactionHash": "0x297a7b04cf99897926649f0ca135d779f129f2d2fa892c668174e0588fd7ddbe"
+      "address": "0xca5172fd356486a4ebda35bebdcc0a44b79f6d3e",
+      "transactionHash": "0x31fd0b5b028d05cfb0cbeecdc0548f6b18b4d089257df66b8daebec99c442e84"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-07-20T22:55:21.137Z"
+  "updatedAt": "2018-07-23T20:56:21.084Z"
 }

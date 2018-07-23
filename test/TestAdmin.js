@@ -23,10 +23,10 @@ contract('Admin', function(accounts) {
 		let instance = await Admin.deployed();
 		await instance.addAdmin(accounts[1], [accounts[2], accounts[3]], {from: accounts[0]});
 		assert.equal(await instance.isAdmin(accounts[1]), true, "account 1 wasn't made an admin");
-		let oldAdminUserAllowance = (await instance.getAdminUserAllowance(accounts[1], accounts[2])).toNumber()
+		let oldAdminUserAllowance = await instance.getAdminUserAllowance(accounts[1], accounts[2])
 		assert.equal(oldAdminUserAllowance, 10, "account 1 can't transfer to account 2");
 		await instance.reduceAdminTransferAllowance(accounts[1], accounts[2], 5);
-		let newAdminUserAllowance = (await instance.getAdminUserAllowance(accounts[1], accounts[2])).toNumber()
+		let newAdminUserAllowance = await instance.getAdminUserAllowance(accounts[1], accounts[2])
 		assert.equal(newAdminUserAllowance, 5, "account 1 transfer allowance to account 2 wasn't updated");
 	});
 

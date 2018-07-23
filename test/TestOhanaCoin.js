@@ -149,10 +149,9 @@ contract('OhanaCoin', function(accounts) {
 	    let instance = await OhanaCoin.deployed();
 	    let admin = await Admin.deployed();
 	    let transferAmount = 10000;
-	    await instance.mintTokens(transferAmount, {from: accounts[0]}) // Mint tokens first so we have something to transfer
-	    await admin.removeAdmin(accounts[1], {from: accounts[0]}); // Remove account 1 as an admin
+	    await instance.mintTokens(30, {from: accounts[0]}) // Mint tokens first so we have something to transfer
 	    try {
-	    	await instance.transferFrom(accounts[2], transferAmount, "", {from: accounts[1]});
+	    	await instance.transferFrom(accounts[2], 30, "", {from: accounts[1]});
 	    	// The line will only be hit if no error is thrown above!
     		throw new Error("Expected an error and didn't get one!");
 	    } catch (err) {

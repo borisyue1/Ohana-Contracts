@@ -1,9 +1,6 @@
-const truffleConfig = require('../../truffle.js').networks.development;
-const url = "http://" + truffleConfig.host + ':' + truffleConfig.port;
-
-const Web3 		= require('web3'),
-	  web3 		= new Web3(new Web3.providers.HttpProvider(url)),
-	  Contract  = require("truffle-contract");
+const config = require('../../config/config.js'),
+	  web3 = config.web3.instance,
+ 	  Contract = require("truffle-contract");;
 
 const leaderboardABI  = require('../../build/contracts/Leaderboard.json');
 

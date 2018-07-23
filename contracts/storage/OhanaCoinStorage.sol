@@ -39,11 +39,11 @@ contract OhanaCoinStorage {
     	accessAllowed[_address] = false;
     }
 
-    function getTransferableBalance(address user) hasAccess external view returns (uint256) {
+    function getTransferableBalance(address user) external view returns (uint256) {
         return balanceOf[user].transferableBalance;
     }
 
-    function getPersonalBalance(address user) hasAccess external view returns (uint256) {
+    function getPersonalBalance(address user) external view returns (uint256) {
         return balanceOf[user].personalBalance;
     }
 
@@ -51,11 +51,11 @@ contract OhanaCoinStorage {
     //     return balanceOf[user].numTransfers;
     // }
 
-    function getUserTransferredAmount(address from, address to) hasAccess external view returns (uint256) {
+    function getUserTransferredAmount(address from, address to) external view returns (uint256) {
         return balanceOf[from].transferAmounts[to];
     }
 
-    function getTransferredUsers(address user) hasAccess external view returns (address[]) {
+    function getTransferredUsers(address user) external view returns (address[]) {
         return balanceOf[user].transferredUsers;
     }
 

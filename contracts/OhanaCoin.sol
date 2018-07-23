@@ -51,7 +51,7 @@ contract OhanaCoin is Owned {
         coinStorage = OhanaCoinStorage(storageContract); // Create an instance of the storage
         owner = msg.sender;                                     // Owner will mint new coins every month
     }
-    
+
     /**
      * Internal transfer, only can be called by this contract. The tokens are transferred 
      * from the _from address's transferable balance to the _to address's transferable 
@@ -199,8 +199,7 @@ contract OhanaCoin is Owned {
     * @param _to The address to deposit the allowance to
     */
     function depositAllowance(address _to) public onlyOwner {
-        // coinStorage.setNumTransfers(_to, 0); //reset the number of transfers
-        coinStorage.resetTransferredUsers(_to); //reset the record of who _to has transferred to in the past month
+        coinStorage.(_to); //reset the record of who _to has transferred to in the past month
         coinStorage.setTransferableBalance(_to, coinStorage.getTransferableBalance(_to).add(monthlyAllowance));
         coinStorage.setTransferableBalance(owner, coinStorage.getTransferableBalance(owner).sub(monthlyAllowance));
         _to.transfer(1 ether); // transfer ether to user to cover gas costs of transactions

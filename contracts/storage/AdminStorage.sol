@@ -39,7 +39,7 @@ contract AdminStorage {
     	accessAllowed[_address] = false;
     }
 
-    function isAdmin(address _user) hasAccess external view returns (bool) {
+    function isAdmin(address _user) external view returns (bool) {
     	return admins[_user];
     }
 
@@ -60,7 +60,7 @@ contract AdminStorage {
         delete adminData[admin];
     }
 
-    function isTeamMember(address admin, address user) hasAccess external view returns (bool) {
+    function isTeamMember(address admin, address user) external view returns (bool) {
         return adminData[admin].isTeamMember[user];
     }
 
@@ -80,19 +80,19 @@ contract AdminStorage {
         delete adminData[admin].allowances[user];
     }
 
-    function getTeamMembers(address admin) hasAccess external view returns (address[]) {
+    function getTeamMembers(address admin) external view returns (address[]) {
         return adminData[admin].teamMembers;
     }
 
-    function getAdminTransferableBalance(address admin) hasAccess external view returns (uint256) {
+    function getAdminTransferableBalance(address admin) external view returns (uint256) {
         return adminData[admin].totalTransferableBalance;
     }
 
-    function getAdminBurnBalance(address admin) hasAccess external view returns (uint256) {
+    function getAdminBurnBalance(address admin) external view returns (uint256) {
         return adminData[admin].totalBurnedBalance;
     }
 
-    function getAdminUserAllowance(address admin, address user) hasAccess external view returns (uint256) {
+    function getAdminUserAllowance(address admin, address user) external view returns (uint256) {
         return adminData[admin].allowances[user];
     }
 
