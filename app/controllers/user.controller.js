@@ -11,24 +11,26 @@ var personalBalance, transferableBalance;
 
 OhanaCoin.deployed().then((instance) => {
 	coinInstance = instance;
+	// coinInstance.getTransferableBalance("0x60b60b61e1400db6028abf8bf43e1e8a3c911fb0").then(console.log)
 });
 
 Leaderboard.deployed().then((instance) => {
 	leaderboardInstance = instance;
 });
 
-const Contract = require("truffle-contract");
+// const Contract = require("truffle-contract");
 
-const abi  = require('../../build/contracts/OhanaCoinStorage.json');
+// const abi  = require('../../build/contracts/OhanaCoinStorage.json');
 
-// Read JSON and attach RPC connection (Provider)
-const storage = Contract(abi);
-storage.setProvider(web3.currentProvider);
+// // Read JSON and attach RPC connection (Provider)
+// const storage = Contract(abi);
+// storage.setProvider(web3.currentProvider);
 
-storage.deployed().then((instance) => {
-	storageInstance = instance;
-	coinInstance.getTransferableBalance("0x60b60b61e1400db6028abf8bf43e1e8a3c911fb0").then(console.log)
-});
+// storage.deployed().then((instance) => {
+// 	storageInstance = instance;
+// 	console.log(storage.currentProvider)
+// 	coinInstance.getTransferableBalance("0x60b60b61e1400db6028abf8bf43e1e8a3c911fb0").then(console.log)
+// });
 // IMPLEMENT ERROR HANDLING
 
 exports.getNumUsers = (req, res, next) => {

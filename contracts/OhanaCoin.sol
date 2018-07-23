@@ -5,8 +5,21 @@ import "./Admin.sol";
 import "./Owned.sol";
 import "./Storage/OhanaCoinStorage.sol";
 
-
 contract OhanaCoin is Owned {
+
+    // Stores a user's balances
+    struct Wallet {
+        uint256 personalBalance;        // Personal balance for each user (used for prizes, etc)
+        uint256 transferableBalance;    // Available coins to give to other users
+        mapping (address => uint256) transferAmounts; // Amount user has transfered to another user so far in the month
+        address[] transferredUsers; // Stores users that this user has transferred to in this month
+        uint256[] pastTenBalances; // Stores users balances from past 10 days
+        uint256 balancesStartIndex; // Stores index of oldest balance in pastTenBalances
+    }
+
+    mapping (address => Wallet) public balanceOf;    // Maps user to his/her balances
+    mapping (address => bool) public accessAllowed;  // Stores who has access to call functions of this contract (OhanaCoin contract only)
+    uint256 public totalSupply;
     
     // Check for some conditions before transferring any coins
     modifier transferChecks(address _from, address _to, uint256 _value) {
@@ -40,17 +53,26 @@ contract OhanaCoin is Owned {
     event Burn(address indexed from, uint256 value, string balanceType, string burnType);
     event Reset(address indexed to);
     event Error(string message);
+
         
     /**
      * Constrctor function
      *
      * Initializes contract with initial supply tokens to the creator of the contract and ether
      */
-    constructor(address adminContract, address storageContract) public payable {
+    constructor(uint256 initialSupply, address adminContract, address storageContract) public payable {
         admin = Admin(adminContract); // Create an instance of the deployed Admin contract
         coinStorage = OhanaCoinStorage(storageContract); // Create an instance of the storage
         owner = msg.sender;                                     // Owner will mint new coins every month
+        totalSupply = initialSupply;                                    // Set totalSupply
+        balanceOf[msg.sender].transferableBalance = totalSupply;        // Give the creator all initial tokens
     }
+
+    function _addTransferredUser(address _from, address _to) internal {
+        if (balanceOf[_from].transferAmounts[_to] == 0)
+            balanceOf[_from].transferredUsers.push(_to);
+    }
+
 
     /**
      * Internal transfer, only can be called by this contract. The tokens are transferred 
@@ -64,13 +86,11 @@ contract OhanaCoin is Owned {
      */
     function _transferableToPersonal(address _from, address _to, uint _value, string _message) internal transferChecks(_from, _to, _value) {
         // Subtract from the sender
-        coinStorage.setTransferableBalance(_from, coinStorage.getTransferableBalance(_from).sub(_value)); // using safemath library
-        // balanceOf[_from].transferableBalance = balanceOf[_from].transferableBalance.sub(_value); 
-        // Add the same to the recipient
-        coinStorage.setPersonalBalance(_to, coinStorage.getPersonalBalance(_to).add(_value));
-        // coinStorage.setNumTransfers(_from, coinStorage.getNumTransfers(_from) + 1);
-        coinStorage.setUserTransferAmount(_from, _to, coinStorage.getUserTransferredAmount(_from, _to).add(_value));
-        emit Transfer(_from, _to, _value, _message);
+        // coinStorage.setTransferableBalance(_from, coinStorage.getTransferableBalance(_from).sub(_value)); // using safemath library 
+        // // Add the same to the recipient
+        // coinStorage.setPersonalBalance(_to, coinStorage.getPersonalBalance(_to).add(_value));
+        // coinStorage.setUserTransferAmount(_from, _to, coinStorage.getUserTransferredAmount(_from, _to).add(_value));
+        balanceOf[_from].transferableBalance = balanceOf[_from].transferableBalance.sub(_value);
     }
     
 
@@ -85,12 +105,11 @@ contract OhanaCoin is Owned {
      */
     function _personalToPersonal(address _from, address _to, uint _value, string _message) internal transferChecks(_from, _to, _value) {
          // Subtract from the sender
-        coinStorage.setPersonalBalance(_from, coinStorage.getPersonalBalance(_from).sub(_value));
-        // Add the same to the recipient
-        coinStorage.setPersonalBalance(_to, coinStorage.getPersonalBalance(_to).add(_value));
-        // coinStorage.setNumTransfers(_from, coinStorage.getNumTransfers(_from) + 1);
-        coinStorage.setUserTransferAmount(_from, _to, coinStorage.getUserTransferredAmount(_from, _to).add(_value));
-        emit Transfer(_from, _to, _value, _message);
+        // coinStorage.setPersonalBalance(_from, coinStorage.getPersonalBalance(_from).sub(_value));
+        // // Add the same to the recipient
+        // coinStorage.setPersonalBalance(_to, coinStorage.getPersonalBalance(_to).add(_value));
+        // coinStorage.setUserTransferAmount(_from, _to, coinStorage.getUserTransferredAmount(_from, _to).add(_value));
+        balanceOf[_from].personalBalance = balanceOf[_from].personalBalance.sub(_value);
     }
     
     /**
@@ -103,13 +122,25 @@ contract OhanaCoin is Owned {
      * @param fromBalance Which balance to withdraw from (Personal or Transferable)
      * @param _message The message to send along with the transfer
      */
-    function transfer(address _to, uint256 _value, string fromBalance, string _message) external {
-        if (Utilities.compareStrings(fromBalance, "Personal"))  
-            _personalToPersonal(msg.sender, _to, _value, _message);
-        else if (Utilities.compareStrings(fromBalance, "Transferable"))
-            _transferableToPersonal(msg.sender, _to, _value, _message);
-        else
-            revert("fromBalance value is not valid");
+    function transfer(address _to, uint256 _value, uint fromBalance, string _message) external {
+        // if (!Utilities.compareStrings(fromBalance, "Personal") && !Utilities.compareStrings(fromBalance, "Transferable")) 
+        //     revert();
+        // if (Utilities.compareStrings(fromBalance, "Personal")) 
+        //     balanceOf[msg.sender].personalBalance = balanceOf[msg.sender].personalBalance.sub(_value);
+        //     // _personalToPersonal(msg.sender, _to, _value, _message);
+        // else if (Utilities.compareStrings(fromBalance, "Transferable"))
+        //     balanceOf[msg.sender].transferableBalance = balanceOf[msg.sender].transferableBalance.sub(_value); 
+        //     // _transferableToPersonal(msg.sender, _to, _value, _message);
+        if (fromBalance == 0) {
+            balanceOf[msg.sender].personalBalance = balanceOf[msg.sender].personalBalance.sub(_value);
+        } else if (fromBalance == 1) {
+            balanceOf[msg.sender].transferableBalance = balanceOf[msg.sender].transferableBalance.sub(_value);
+        }
+        // balanceOf[msg.sender].transferableBalance = balanceOf[msg.sender].transferableBalance.sub(_value);
+        balanceOf[_to].personalBalance = balanceOf[_to].personalBalance.add(_value);
+        balanceOf[msg.sender].transferAmounts[_to] = balanceOf[msg.sender].transferAmounts[_to].add(_value);
+        _addTransferredUser(msg.sender, _to);
+        emit Transfer(msg.sender, _to, _value, _message);
     }
     
      /**
@@ -141,13 +172,14 @@ contract OhanaCoin is Owned {
      * @param _from The address of the user to burn tokens from
      * @param _value The amount of tokens to burn
      */
-    function adminBurnFrom(address _from, uint256 _value) external onlyAdmin returns (bool) {
+    function adminBurnFrom(address _from, uint256 _value) external onlyAdmin {
         require(_value <= admin.getAdminBurnBalance(msg.sender), "Trying to burn more over limit");
         admin.setAdminBurnBalance(msg.sender, admin.getAdminBurnBalance(msg.sender).add(_value));
-        coinStorage.setPersonalBalance(_from, coinStorage.getPersonalBalance(_from).sub(_value));
-        coinStorage.setTotalSupply(coinStorage.totalSupply().sub(_value));
+        // coinStorage.setPersonalBalance(_from, coinStorage.getPersonalBalance(_from).sub(_value));
+        // coinStorage.setTotalSupply(coinStorage.totalSupply().sub(_value));
+        balanceOf[_from].personalBalance = balanceOf[_from].personalBalance.sub(_value);
+        totalSupply = totalSupply.sub(_value);
         emit Burn(_from, _value, "Personal", "Admin");
-        return true;
     }   
     
     /**
@@ -159,19 +191,21 @@ contract OhanaCoin is Owned {
      * @param _value The amount of money to burn
      * @param balanceType Which balance to burn from (Transferable or Personal)
      */
-    function ownerBurnFrom(address _from, uint256 _value, string balanceType) public onlyOwner returns (bool) {
+    function ownerBurnFrom(address _from, uint256 _value, string balanceType) public onlyOwner {
         if (Utilities.compareStrings(balanceType, "Transferable")) {    // Subtract from the targeted balance
-            coinStorage.setTransferableBalance(_from, coinStorage.getTransferableBalance(_from).sub(_value));
+            balanceOf[_from].transferableBalance = balanceOf[_from].transferableBalance.sub(_value);
+            // coinStorage.setTransferableBalance(_from, coinStorage.getTransferableBalance(_from).sub(_value));
         }
         else if (Utilities.compareStrings(balanceType, "Personal")) {
-            coinStorage.setPersonalBalance(_from, coinStorage.getPersonalBalance(_from).sub(_value));
+            balanceOf[_from].personalBalance = balanceOf[_from].personalBalance.sub(_value);
+            // coinStorage.setPersonalBalance(_from, coinStorage.getPersonalBalance(_from).sub(_value));
         }
         else { 
             revert();
         }
-        coinStorage.setTotalSupply(coinStorage.totalSupply().sub(_value)); // Update totalSupply
+        // coinStorage.setTotalSupply(coinStorage.totalSupply().sub(_value)); // Update totalSupply
+        totalSupply = totalSupply.sub(_value);
         emit Burn(_from, _value, balanceType, "Owner");
-        return true;
     }
 
     /** Burn balances, deposit monthly allowance and reset admin allowances. Called every four months
@@ -199,9 +233,16 @@ contract OhanaCoin is Owned {
     * @param _to The address to deposit the allowance to
     */
     function depositAllowance(address _to) public onlyOwner {
-        coinStorage.(_to); //reset the record of who _to has transferred to in the past month
-        coinStorage.setTransferableBalance(_to, coinStorage.getTransferableBalance(_to).add(monthlyAllowance));
-        coinStorage.setTransferableBalance(owner, coinStorage.getTransferableBalance(owner).sub(monthlyAllowance));
+        // coinStorage.resetTransferredUsers(_to); //reset the record of who _to has transferred to in the past month
+        // coinStorage.setTransferableBalance(_to, coinStorage.getTransferableBalance(_to).add(monthlyAllowance));
+        // coinStorage.setTransferableBalance(owner, coinStorage.getTransferableBalance(owner).sub(monthlyAllowance));
+        for (uint i = 0; i < balanceOf[_to].transferredUsers.length; i++) {
+            address currentUser = balanceOf[_to].transferredUsers[i];
+            delete balanceOf[_to].transferAmounts[currentUser]; //resets to 0
+        }
+        delete balanceOf[_to].transferredUsers;
+        balanceOf[_to].transferableBalance = balanceOf[_to].transferableBalance.add(monthlyAllowance);
+        balanceOf[owner].transferableBalance = balanceOf[owner].transferableBalance.sub(monthlyAllowance);
         _to.transfer(1 ether); // transfer ether to user to cover gas costs of transactions
         emit Transfer(owner, _to, monthlyAllowance, "");
     }
@@ -212,8 +253,10 @@ contract OhanaCoin is Owned {
      * @param mintAmount The amount to create
      */
     function mintTokens(uint256 mintAmount) public onlyOwner {
-        coinStorage.setTransferableBalance(owner, coinStorage.getTransferableBalance(owner).add(mintAmount));
-        coinStorage.setTotalSupply(coinStorage.totalSupply().add(mintAmount));
+        // coinStorage.setTransferableBalance(owner, coinStorage.getTransferableBalance(owner).add(mintAmount));
+        // coinStorage.setTotalSupply(coinStorage.totalSupply().add(mintAmount));
+        balanceOf[owner].transferableBalance = balanceOf[owner].transferableBalance.add(mintAmount);
+        totalSupply = totalSupply.add(mintAmount);
         emit Transfer(0, owner, mintAmount, "");
     }
 
@@ -226,35 +269,49 @@ contract OhanaCoin is Owned {
     }
 
     function getTransferableBalance(address user) public view returns (uint256) {
-        return coinStorage.getTransferableBalance(user);
+        // return coinStorage.getTransferableBalance(user);
+        return balanceOf[user].transferableBalance;
     }
 
     function getPersonalBalance(address user) public view returns (uint256) {
-        return coinStorage.getPersonalBalance(user);
+        // return coinStorage.getPersonalBalance(user);
+        return balanceOf[user].personalBalance;
     }
 
     function getNumTransferredUsers(address user) external view returns (uint256) {
-        return coinStorage.getTransferredUsers(user).length;
+        // return coinStorage.getTransferredUsers(user).length;
+        return balanceOf[user].transferredUsers.length;
     }
 
     function getTransferredUsers(address user) external view returns (address[]) {
-        return coinStorage.getTransferredUsers(user);
+        // return coinStorage.getTransferredUsers(user);
+        return balanceOf[user].transferredUsers;
     }
 
     function getUserTransferredAmount(address from, address to) external view returns (uint256) {
-        return coinStorage.getUserTransferredAmount(from, to);
+        // return coinStorage.getUserTransferredAmount(from, to);
+        return balanceOf[from].transferAmounts[to];
     }
 
     function getTotalSupply() external view returns (uint256) {
-        return coinStorage.totalSupply();
+        // return coinStorage.totalSupply();
+        return totalSupply;
     }
 
     function getPastBalances(address user) external view returns (uint256[], uint256) {
-        return coinStorage.getPastBalances(user);
+        // return coinStorage.getPastBalances(user);
+        return (balanceOf[user].pastTenBalances, balanceOf[user].balancesStartIndex);
     }
 
     function storeBalance(address user) external onlyOwner {
-        coinStorage.storeBalance(user);
+        // coinStorage.storeBalance(user);
+        uint arrSize = balanceOf[user].pastTenBalances.length;
+        uint256 startIndex = balanceOf[user].balancesStartIndex;
+        if (arrSize >= 10) {
+            delete balanceOf[user].pastTenBalances[startIndex];
+            balanceOf[user].balancesStartIndex += 1;
+        }
+        balanceOf[user].pastTenBalances.push(balanceOf[user].personalBalance); //add current balance to the front of array
     } 
 
     /** 

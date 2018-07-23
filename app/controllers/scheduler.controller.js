@@ -12,6 +12,7 @@ var accounts = web3.eth.getAccounts().then((accounts) => {
 
 // MONTH STARTS AT 0
 var initDepositScheduler = () => {
+	//MINT TOKENS
 	let scheduler = schedule.scheduleJob("* * 1 * *", () => {
 		accounts.then((result) => {
 			result.forEach((account) => {
