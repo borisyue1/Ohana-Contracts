@@ -119,10 +119,10 @@ contract OhanaCoin is Owned {
      *
      * @param _to The address of the recipient
      * @param _value The amount to send
-     * @param fromBalance Which balance to withdraw from (Personal or Transferable)
+     * @param _fromBalance Which balance to withdraw from (Personal or Transferable)
      * @param _message The message to send along with the transfer
      */
-    function transfer(address _to, uint256 _value, string fromBalance, string _message) external {
+    function transfer(address _to, uint256 _value, uint _fromBalance, string _message) external {
         // if (!Utilities.compareStrings(fromBalance, "Personal") && !Utilities.compareStrings(fromBalance, "Transferable")) 
         //     revert();
         // if (fromBalance.compareStrings("Personal")) {
@@ -133,9 +133,10 @@ contract OhanaCoin is Owned {
         //     balanceOf[msg.sender].transferableBalance = balanceOf[msg.sender].transferableBalance.sub(_value); 
         // }
             // _transferableToPersonal(msg.sender, _to, _value, _message);
-        if (fromBalance == 0) {
+        if (_fromBalance == 0) {
             balanceOf[msg.sender].personalBalance = balanceOf[msg.sender].personalBalance.sub(_value);
-        } else if (fromBalance == 1) {
+        } 
+        if (_fromBalance == 1) {
             balanceOf[msg.sender].transferableBalance = balanceOf[msg.sender].transferableBalance.sub(_value);
         }
         // balanceOf[msg.sender].transferableBalance = balanceOf[msg.sender].transferableBalance.sub(_value);

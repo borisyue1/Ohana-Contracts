@@ -133,7 +133,7 @@ exports.transferTo = (req, res, next) => {
 	web3.eth.personal.unlockAccount(fromKey, password, 0).then(() => {
 		return coinInstance.transfer(toKey, value, fromBalance, message, {from: fromKey, gas:gasLimit}) //emit event to update frontend balance
 	}).then((receipt) => {
-		res.send({error: receipt});
+		// res.send({error: receipt});
 		return coinInstance.getPersonalBalance(toKey, {gas: gasLimit})
 	}).catch((error) => {
 		res.send({error: error.message});

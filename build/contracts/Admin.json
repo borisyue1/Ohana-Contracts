@@ -446,7 +446,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 463,
-        "sourceUnit": 1320,
+        "sourceUnit": 1396,
         "src": "26:21:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -457,7 +457,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 463,
-        "sourceUnit": 1845,
+        "sourceUnit": 1921,
         "src": "48:36:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -471,10 +471,10 @@
               "id": 4,
               "name": "Owned",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1319,
+              "referencedDeclaration": 1395,
               "src": "105:5:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Owned_$1319",
+                "typeIdentifier": "t_contract$_Owned_$1395",
                 "typeString": "contract Owned"
               }
             },
@@ -484,7 +484,7 @@
           }
         ],
         "contractDependencies": [
-          1319
+          1395
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -492,7 +492,7 @@
         "id": 462,
         "linearizedBaseContracts": [
           462,
-          1319
+          1395
         ],
         "name": "Admin",
         "nodeType": "ContractDefinition",
@@ -731,7 +731,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3032,
+                              "referencedDeclaration": 3108,
                               "src": "717:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -769,7 +769,7 @@
                             "referencedDeclaration": 37,
                             "src": "696:12:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                              "typeIdentifier": "t_contract$_AdminStorage_$1920",
                               "typeString": "contract AdminStorage"
                             }
                           },
@@ -780,7 +780,7 @@
                           "lValueRequested": false,
                           "memberName": "isAdmin",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1513,
+                          "referencedDeclaration": 1589,
                           "src": "696:20:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_bool_$",
@@ -835,10 +835,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3035,
-                        3036
+                        3111,
+                        3112
                       ],
-                      "referencedDeclaration": 3036,
+                      "referencedDeclaration": 3112,
                       "src": "688:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -893,7 +893,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_AdminStorage_$1844",
+              "typeIdentifier": "t_contract$_AdminStorage_$1920",
               "typeString": "contract AdminStorage"
             },
             "typeName": {
@@ -901,10 +901,10 @@
               "id": 36,
               "name": "AdminStorage",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1844,
+              "referencedDeclaration": 1920,
               "src": "792:12:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                "typeIdentifier": "t_contract$_AdminStorage_$1920",
                 "typeString": "contract AdminStorage"
               }
             },
@@ -934,7 +934,7 @@
                       "referencedDeclaration": 37,
                       "src": "879:12:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                        "typeIdentifier": "t_contract$_AdminStorage_$1920",
                         "typeString": "contract AdminStorage"
                       }
                     },
@@ -968,10 +968,10 @@
                         "name": "AdminStorage",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1844,
+                        "referencedDeclaration": 1920,
                         "src": "894:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_AdminStorage_$1844_$",
+                          "typeIdentifier": "t_type$_t_contract$_AdminStorage_$1920_$",
                           "typeString": "type(contract AdminStorage)"
                         }
                       },
@@ -985,13 +985,13 @@
                       "nodeType": "FunctionCall",
                       "src": "894:29:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                        "typeIdentifier": "t_contract$_AdminStorage_$1920",
                         "typeString": "contract AdminStorage"
                       }
                     },
                     "src": "879:44:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                      "typeIdentifier": "t_contract$_AdminStorage_$1920",
                       "typeString": "contract AdminStorage"
                     }
                   },
@@ -1095,7 +1095,7 @@
                         "referencedDeclaration": 37,
                         "src": "1107:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -1106,7 +1106,7 @@
                       "lValueRequested": false,
                       "memberName": "isAdmin",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1513,
+                      "referencedDeclaration": 1589,
                       "src": "1107:20:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_bool_$",
@@ -1272,7 +1272,7 @@
                         "referencedDeclaration": 37,
                         "src": "1406:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -1283,7 +1283,7 @@
                       "lValueRequested": false,
                       "memberName": "addAdmin",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1538,
+                      "referencedDeclaration": 1614,
                       "src": "1406:21:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_array$_t_address_$dyn_memory_ptr_$returns$__$",
@@ -1359,7 +1359,7 @@
                         "referencedDeclaration": 37,
                         "src": "1455:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -1370,7 +1370,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminTransferableBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1805,
+                      "referencedDeclaration": 1881,
                       "src": "1455:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -1446,7 +1446,7 @@
                         "referencedDeclaration": 37,
                         "src": "1536:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -1457,7 +1457,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminBurnBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1843,
+                      "referencedDeclaration": 1919,
                       "src": "1536:32:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -1632,7 +1632,7 @@
                               "referencedDeclaration": 37,
                               "src": "1711:12:0",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                 "typeString": "contract AdminStorage"
                               }
                             },
@@ -1643,7 +1643,7 @@
                             "lValueRequested": false,
                             "memberName": "addTeamMember",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1661,
+                            "referencedDeclaration": 1737,
                             "src": "1711:26:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -2029,7 +2029,7 @@
                         "referencedDeclaration": 37,
                         "src": "2007:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -2040,7 +2040,7 @@
                       "lValueRequested": false,
                       "memberName": "removeAdmin",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1598,
+                      "referencedDeclaration": 1674,
                       "src": "2007:24:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
@@ -2252,7 +2252,7 @@
                         "referencedDeclaration": 37,
                         "src": "2180:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -2263,7 +2263,7 @@
                       "lValueRequested": false,
                       "memberName": "isTeamMember",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1615,
+                      "referencedDeclaration": 1691,
                       "src": "2180:25:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$returns$_t_bool_$",
@@ -2416,7 +2416,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3032,
+                          "referencedDeclaration": 3108,
                           "src": "2324:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2488,7 +2488,7 @@
                         "referencedDeclaration": 37,
                         "src": "2297:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -2499,7 +2499,7 @@
                       "lValueRequested": false,
                       "memberName": "addTeamMember",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1661,
+                      "referencedDeclaration": 1737,
                       "src": "2297:26:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -2660,7 +2660,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3032,
+                          "referencedDeclaration": 3108,
                           "src": "2499:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2698,7 +2698,7 @@
                         "referencedDeclaration": 37,
                         "src": "2471:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -2709,7 +2709,7 @@
                       "lValueRequested": false,
                       "memberName": "getTeamMembers",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1745,
+                      "referencedDeclaration": 1821,
                       "src": "2471:27:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_array$_t_address_$dyn_memory_ptr_$",
@@ -2947,7 +2947,7 @@
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 3032,
+                                      "referencedDeclaration": 3108,
                                       "src": "2742:3:0",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_magic_message",
@@ -3019,7 +3019,7 @@
                                     "referencedDeclaration": 37,
                                     "src": "2712:12:0",
                                     "typeDescriptions": {
-                                      "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                      "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                       "typeString": "contract AdminStorage"
                                     }
                                   },
@@ -3030,7 +3030,7 @@
                                   "lValueRequested": false,
                                   "memberName": "removeTeamMember",
                                   "nodeType": "MemberAccess",
-                                  "referencedDeclaration": 1731,
+                                  "referencedDeclaration": 1807,
                                   "src": "2712:29:0",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -3318,7 +3318,7 @@
                         "referencedDeclaration": 37,
                         "src": "2969:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -3329,7 +3329,7 @@
                       "lValueRequested": false,
                       "memberName": "getTeamMembers",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1745,
+                      "referencedDeclaration": 1821,
                       "src": "2969:27:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_array$_t_address_$dyn_memory_ptr_$",
@@ -3488,7 +3488,7 @@
                         "referencedDeclaration": 37,
                         "src": "3117:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -3499,7 +3499,7 @@
                       "lValueRequested": false,
                       "memberName": "getAdminTransferableBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1758,
+                      "referencedDeclaration": 1834,
                       "src": "3117:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -3648,7 +3648,7 @@
                         "referencedDeclaration": 37,
                         "src": "3270:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -3659,7 +3659,7 @@
                       "lValueRequested": false,
                       "memberName": "getAdminBurnBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1771,
+                      "referencedDeclaration": 1847,
                       "src": "3270:32:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -3825,7 +3825,7 @@
                         "referencedDeclaration": 37,
                         "src": "3431:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -3836,7 +3836,7 @@
                       "lValueRequested": false,
                       "memberName": "getAdminUserAllowance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1788,
+                      "referencedDeclaration": 1864,
                       "src": "3431:34:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$returns$_t_uint256_$",
@@ -4028,7 +4028,7 @@
                         "referencedDeclaration": 37,
                         "src": "3569:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -4039,7 +4039,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminBurnBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1843,
+                      "referencedDeclaration": 1919,
                       "src": "3569:32:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -4226,7 +4226,7 @@
                                 "referencedDeclaration": 37,
                                 "src": "3777:12:0",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                  "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                   "typeString": "contract AdminStorage"
                                 }
                               },
@@ -4237,7 +4237,7 @@
                               "lValueRequested": false,
                               "memberName": "getAdminTransferableBalance",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1758,
+                              "referencedDeclaration": 1834,
                               "src": "3777:40:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -4265,7 +4265,7 @@
                           "lValueRequested": false,
                           "memberName": "sub",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1389,
+                          "referencedDeclaration": 1465,
                           "src": "3777:51:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -4307,7 +4307,7 @@
                         "referencedDeclaration": 37,
                         "src": "3729:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -4318,7 +4318,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminTransferableBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1805,
+                      "referencedDeclaration": 1881,
                       "src": "3729:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -4447,7 +4447,7 @@
                                 "referencedDeclaration": 37,
                                 "src": "3894:12:0",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                  "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                   "typeString": "contract AdminStorage"
                                 }
                               },
@@ -4458,7 +4458,7 @@
                               "lValueRequested": false,
                               "memberName": "getAdminUserAllowance",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1788,
+                              "referencedDeclaration": 1864,
                               "src": "3894:34:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$returns$_t_uint256_$",
@@ -4486,7 +4486,7 @@
                           "lValueRequested": false,
                           "memberName": "sub",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1389,
+                          "referencedDeclaration": 1465,
                           "src": "3894:51:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -4532,7 +4532,7 @@
                         "referencedDeclaration": 37,
                         "src": "3846:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -4543,7 +4543,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminUserAllowance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1826,
+                      "referencedDeclaration": 1902,
                       "src": "3846:34:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -4705,7 +4705,7 @@
                             "name": "tx",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 3044,
+                            "referencedDeclaration": 3120,
                             "src": "4033:2:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_transaction",
@@ -4734,7 +4734,7 @@
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1297,
+                          "referencedDeclaration": 1373,
                           "src": "4046:5:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -4781,10 +4781,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3035,
-                        3036
+                        3111,
+                        3112
                       ],
-                      "referencedDeclaration": 3036,
+                      "referencedDeclaration": 3112,
                       "src": "4025:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -4860,7 +4860,7 @@
                         "referencedDeclaration": 37,
                         "src": "4079:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -4871,7 +4871,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminTransferableBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1805,
+                      "referencedDeclaration": 1881,
                       "src": "4079:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -4947,7 +4947,7 @@
                         "referencedDeclaration": 37,
                         "src": "4161:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -4958,7 +4958,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminBurnBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1843,
+                      "referencedDeclaration": 1919,
                       "src": "4161:32:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -5059,7 +5059,7 @@
                         "referencedDeclaration": 37,
                         "src": "4255:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -5070,7 +5070,7 @@
                       "lValueRequested": false,
                       "memberName": "getTeamMembers",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1745,
+                      "referencedDeclaration": 1821,
                       "src": "4255:27:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_array$_t_address_$dyn_memory_ptr_$",
@@ -5195,7 +5195,7 @@
                               "referencedDeclaration": 37,
                               "src": "4352:12:0",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                 "typeString": "contract AdminStorage"
                               }
                             },
@@ -5206,7 +5206,7 @@
                             "lValueRequested": false,
                             "memberName": "setAdminUserAllowance",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1826,
+                            "referencedDeclaration": 1902,
                             "src": "4352:34:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -5511,7 +5511,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1318,
+                  "referencedDeclaration": 1394,
                   "src": "4508:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -5639,7 +5639,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1318,
+                  "referencedDeclaration": 1394,
                   "src": "4631:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -5767,7 +5767,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1318,
+                  "referencedDeclaration": 1394,
                   "src": "4751:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -6103,7 +6103,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 463,
-        "sourceUnit": 1320,
+        "sourceUnit": 1396,
         "src": "26:21:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -6114,7 +6114,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 463,
-        "sourceUnit": 1845,
+        "sourceUnit": 1921,
         "src": "48:36:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -6128,10 +6128,10 @@
               "id": 4,
               "name": "Owned",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1319,
+              "referencedDeclaration": 1395,
               "src": "105:5:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Owned_$1319",
+                "typeIdentifier": "t_contract$_Owned_$1395",
                 "typeString": "contract Owned"
               }
             },
@@ -6141,7 +6141,7 @@
           }
         ],
         "contractDependencies": [
-          1319
+          1395
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -6149,7 +6149,7 @@
         "id": 462,
         "linearizedBaseContracts": [
           462,
-          1319
+          1395
         ],
         "name": "Admin",
         "nodeType": "ContractDefinition",
@@ -6388,7 +6388,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3032,
+                              "referencedDeclaration": 3108,
                               "src": "717:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -6426,7 +6426,7 @@
                             "referencedDeclaration": 37,
                             "src": "696:12:0",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                              "typeIdentifier": "t_contract$_AdminStorage_$1920",
                               "typeString": "contract AdminStorage"
                             }
                           },
@@ -6437,7 +6437,7 @@
                           "lValueRequested": false,
                           "memberName": "isAdmin",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1513,
+                          "referencedDeclaration": 1589,
                           "src": "696:20:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_bool_$",
@@ -6492,10 +6492,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3035,
-                        3036
+                        3111,
+                        3112
                       ],
-                      "referencedDeclaration": 3036,
+                      "referencedDeclaration": 3112,
                       "src": "688:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -6550,7 +6550,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_AdminStorage_$1844",
+              "typeIdentifier": "t_contract$_AdminStorage_$1920",
               "typeString": "contract AdminStorage"
             },
             "typeName": {
@@ -6558,10 +6558,10 @@
               "id": 36,
               "name": "AdminStorage",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1844,
+              "referencedDeclaration": 1920,
               "src": "792:12:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                "typeIdentifier": "t_contract$_AdminStorage_$1920",
                 "typeString": "contract AdminStorage"
               }
             },
@@ -6591,7 +6591,7 @@
                       "referencedDeclaration": 37,
                       "src": "879:12:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                        "typeIdentifier": "t_contract$_AdminStorage_$1920",
                         "typeString": "contract AdminStorage"
                       }
                     },
@@ -6625,10 +6625,10 @@
                         "name": "AdminStorage",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1844,
+                        "referencedDeclaration": 1920,
                         "src": "894:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_AdminStorage_$1844_$",
+                          "typeIdentifier": "t_type$_t_contract$_AdminStorage_$1920_$",
                           "typeString": "type(contract AdminStorage)"
                         }
                       },
@@ -6642,13 +6642,13 @@
                       "nodeType": "FunctionCall",
                       "src": "894:29:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                        "typeIdentifier": "t_contract$_AdminStorage_$1920",
                         "typeString": "contract AdminStorage"
                       }
                     },
                     "src": "879:44:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                      "typeIdentifier": "t_contract$_AdminStorage_$1920",
                       "typeString": "contract AdminStorage"
                     }
                   },
@@ -6752,7 +6752,7 @@
                         "referencedDeclaration": 37,
                         "src": "1107:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -6763,7 +6763,7 @@
                       "lValueRequested": false,
                       "memberName": "isAdmin",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1513,
+                      "referencedDeclaration": 1589,
                       "src": "1107:20:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_bool_$",
@@ -6929,7 +6929,7 @@
                         "referencedDeclaration": 37,
                         "src": "1406:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -6940,7 +6940,7 @@
                       "lValueRequested": false,
                       "memberName": "addAdmin",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1538,
+                      "referencedDeclaration": 1614,
                       "src": "1406:21:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_array$_t_address_$dyn_memory_ptr_$returns$__$",
@@ -7016,7 +7016,7 @@
                         "referencedDeclaration": 37,
                         "src": "1455:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -7027,7 +7027,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminTransferableBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1805,
+                      "referencedDeclaration": 1881,
                       "src": "1455:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -7103,7 +7103,7 @@
                         "referencedDeclaration": 37,
                         "src": "1536:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -7114,7 +7114,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminBurnBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1843,
+                      "referencedDeclaration": 1919,
                       "src": "1536:32:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -7289,7 +7289,7 @@
                               "referencedDeclaration": 37,
                               "src": "1711:12:0",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                 "typeString": "contract AdminStorage"
                               }
                             },
@@ -7300,7 +7300,7 @@
                             "lValueRequested": false,
                             "memberName": "addTeamMember",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1661,
+                            "referencedDeclaration": 1737,
                             "src": "1711:26:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -7686,7 +7686,7 @@
                         "referencedDeclaration": 37,
                         "src": "2007:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -7697,7 +7697,7 @@
                       "lValueRequested": false,
                       "memberName": "removeAdmin",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1598,
+                      "referencedDeclaration": 1674,
                       "src": "2007:24:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
@@ -7909,7 +7909,7 @@
                         "referencedDeclaration": 37,
                         "src": "2180:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -7920,7 +7920,7 @@
                       "lValueRequested": false,
                       "memberName": "isTeamMember",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1615,
+                      "referencedDeclaration": 1691,
                       "src": "2180:25:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$returns$_t_bool_$",
@@ -8073,7 +8073,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3032,
+                          "referencedDeclaration": 3108,
                           "src": "2324:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -8145,7 +8145,7 @@
                         "referencedDeclaration": 37,
                         "src": "2297:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -8156,7 +8156,7 @@
                       "lValueRequested": false,
                       "memberName": "addTeamMember",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1661,
+                      "referencedDeclaration": 1737,
                       "src": "2297:26:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -8317,7 +8317,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3032,
+                          "referencedDeclaration": 3108,
                           "src": "2499:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -8355,7 +8355,7 @@
                         "referencedDeclaration": 37,
                         "src": "2471:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -8366,7 +8366,7 @@
                       "lValueRequested": false,
                       "memberName": "getTeamMembers",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1745,
+                      "referencedDeclaration": 1821,
                       "src": "2471:27:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_array$_t_address_$dyn_memory_ptr_$",
@@ -8604,7 +8604,7 @@
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 3032,
+                                      "referencedDeclaration": 3108,
                                       "src": "2742:3:0",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_magic_message",
@@ -8676,7 +8676,7 @@
                                     "referencedDeclaration": 37,
                                     "src": "2712:12:0",
                                     "typeDescriptions": {
-                                      "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                      "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                       "typeString": "contract AdminStorage"
                                     }
                                   },
@@ -8687,7 +8687,7 @@
                                   "lValueRequested": false,
                                   "memberName": "removeTeamMember",
                                   "nodeType": "MemberAccess",
-                                  "referencedDeclaration": 1731,
+                                  "referencedDeclaration": 1807,
                                   "src": "2712:29:0",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -8975,7 +8975,7 @@
                         "referencedDeclaration": 37,
                         "src": "2969:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -8986,7 +8986,7 @@
                       "lValueRequested": false,
                       "memberName": "getTeamMembers",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1745,
+                      "referencedDeclaration": 1821,
                       "src": "2969:27:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_array$_t_address_$dyn_memory_ptr_$",
@@ -9145,7 +9145,7 @@
                         "referencedDeclaration": 37,
                         "src": "3117:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -9156,7 +9156,7 @@
                       "lValueRequested": false,
                       "memberName": "getAdminTransferableBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1758,
+                      "referencedDeclaration": 1834,
                       "src": "3117:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -9305,7 +9305,7 @@
                         "referencedDeclaration": 37,
                         "src": "3270:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -9316,7 +9316,7 @@
                       "lValueRequested": false,
                       "memberName": "getAdminBurnBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1771,
+                      "referencedDeclaration": 1847,
                       "src": "3270:32:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -9482,7 +9482,7 @@
                         "referencedDeclaration": 37,
                         "src": "3431:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -9493,7 +9493,7 @@
                       "lValueRequested": false,
                       "memberName": "getAdminUserAllowance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1788,
+                      "referencedDeclaration": 1864,
                       "src": "3431:34:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$returns$_t_uint256_$",
@@ -9685,7 +9685,7 @@
                         "referencedDeclaration": 37,
                         "src": "3569:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -9696,7 +9696,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminBurnBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1843,
+                      "referencedDeclaration": 1919,
                       "src": "3569:32:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -9883,7 +9883,7 @@
                                 "referencedDeclaration": 37,
                                 "src": "3777:12:0",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                  "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                   "typeString": "contract AdminStorage"
                                 }
                               },
@@ -9894,7 +9894,7 @@
                               "lValueRequested": false,
                               "memberName": "getAdminTransferableBalance",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1758,
+                              "referencedDeclaration": 1834,
                               "src": "3777:40:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -9922,7 +9922,7 @@
                           "lValueRequested": false,
                           "memberName": "sub",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1389,
+                          "referencedDeclaration": 1465,
                           "src": "3777:51:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -9964,7 +9964,7 @@
                         "referencedDeclaration": 37,
                         "src": "3729:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -9975,7 +9975,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminTransferableBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1805,
+                      "referencedDeclaration": 1881,
                       "src": "3729:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -10104,7 +10104,7 @@
                                 "referencedDeclaration": 37,
                                 "src": "3894:12:0",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                  "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                   "typeString": "contract AdminStorage"
                                 }
                               },
@@ -10115,7 +10115,7 @@
                               "lValueRequested": false,
                               "memberName": "getAdminUserAllowance",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1788,
+                              "referencedDeclaration": 1864,
                               "src": "3894:34:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$returns$_t_uint256_$",
@@ -10143,7 +10143,7 @@
                           "lValueRequested": false,
                           "memberName": "sub",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1389,
+                          "referencedDeclaration": 1465,
                           "src": "3894:51:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -10189,7 +10189,7 @@
                         "referencedDeclaration": 37,
                         "src": "3846:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -10200,7 +10200,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminUserAllowance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1826,
+                      "referencedDeclaration": 1902,
                       "src": "3846:34:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -10362,7 +10362,7 @@
                             "name": "tx",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 3044,
+                            "referencedDeclaration": 3120,
                             "src": "4033:2:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_transaction",
@@ -10391,7 +10391,7 @@
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1297,
+                          "referencedDeclaration": 1373,
                           "src": "4046:5:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -10438,10 +10438,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3035,
-                        3036
+                        3111,
+                        3112
                       ],
-                      "referencedDeclaration": 3036,
+                      "referencedDeclaration": 3112,
                       "src": "4025:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -10517,7 +10517,7 @@
                         "referencedDeclaration": 37,
                         "src": "4079:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -10528,7 +10528,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminTransferableBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1805,
+                      "referencedDeclaration": 1881,
                       "src": "4079:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -10604,7 +10604,7 @@
                         "referencedDeclaration": 37,
                         "src": "4161:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -10615,7 +10615,7 @@
                       "lValueRequested": false,
                       "memberName": "setAdminBurnBalance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1843,
+                      "referencedDeclaration": 1919,
                       "src": "4161:32:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -10716,7 +10716,7 @@
                         "referencedDeclaration": 37,
                         "src": "4255:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                          "typeIdentifier": "t_contract$_AdminStorage_$1920",
                           "typeString": "contract AdminStorage"
                         }
                       },
@@ -10727,7 +10727,7 @@
                       "lValueRequested": false,
                       "memberName": "getTeamMembers",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1745,
+                      "referencedDeclaration": 1821,
                       "src": "4255:27:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_array$_t_address_$dyn_memory_ptr_$",
@@ -10852,7 +10852,7 @@
                               "referencedDeclaration": 37,
                               "src": "4352:12:0",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_AdminStorage_$1844",
+                                "typeIdentifier": "t_contract$_AdminStorage_$1920",
                                 "typeString": "contract AdminStorage"
                               }
                             },
@@ -10863,7 +10863,7 @@
                             "lValueRequested": false,
                             "memberName": "setAdminUserAllowance",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1826,
+                            "referencedDeclaration": 1902,
                             "src": "4352:34:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -11168,7 +11168,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1318,
+                  "referencedDeclaration": 1394,
                   "src": "4508:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -11296,7 +11296,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1318,
+                  "referencedDeclaration": 1394,
                   "src": "4631:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -11424,7 +11424,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1318,
+                  "referencedDeclaration": 1394,
                   "src": "4751:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -11753,10 +11753,10 @@
     "40579": {
       "events": {},
       "links": {},
-      "address": "0x29764da25ab034d254e21f40862375bdfb5da3a1",
-      "transactionHash": "0xec8f8e84f0c9dc238d6dbc2ddc8d7cebb35d0ab8cfdd084849d8d5643f6bd773"
+      "address": "0x687c34f9f846ccdbbd9983e532e10e7ca1cc06e6",
+      "transactionHash": "0xbd900e815776dcbf110092e149e6c4444067fbdc5ffe2dd2de22b4a6f1e7e258"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-07-24T18:21:37.869Z"
+  "updatedAt": "2018-07-26T05:38:48.880Z"
 }
