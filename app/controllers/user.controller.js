@@ -50,7 +50,7 @@ exports.getBalances = (req, res, next) => {
 	.then((personalBalance) => {
 		coinInstance.getTransferableBalance(publicKey)
 		.then((transferableBalance) => {
-			res.send({personal: personalBalance, transferable: transferableBalance});
+			res.send({personal: parseInt(personalBalance), transferable: parseInt(transferableBalance)});
 		}, (error) => {
 			res.send({ error: error.message});
 		})
@@ -133,6 +133,7 @@ exports.transferTo = (req, res, next) => {
 	web3.eth.personal.unlockAccount(fromKey, password, 0).then(() => {
 		return coinInstance.transfer(toKey, value, fromBalance, message, {from: fromKey, gas:gasLimit}) //emit event to update frontend balance
 	}).then((receipt) => {
+		res.send({error: receipt});
 		return coinInstance.getPersonalBalance(toKey, {gas: gasLimit})
 	}).catch((error) => {
 		res.send({error: error.message});
@@ -144,12 +145,12 @@ exports.transferTo = (req, res, next) => {
 }
 
 exports.registerUser = (req, res, next) => {
+	res.setHeader('Content-Type', 'application/json');
 	const password = req.body.password;
 	web3.eth.personal.newAccount(password)
 	.then((address) => {
 		coinInstance.depositAllowance(address, {from: etherbase, gas:gasLimit})
 		.then(() => {
-			res.setHeader('Content-Type', 'application/json');
         	res.send({ address: address });
 		}).catch((error) => {
 			res.send({ "deposit error": error.message});

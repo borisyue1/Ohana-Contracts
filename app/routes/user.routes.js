@@ -16,7 +16,7 @@ router.post("/pastBalances", user.getPastBalances);
 
 
 // EDIT VALUES
-router.patch('/transfer', user.transferTo);
+router.post('/transfer', user.transferTo);
 
 router.post("/register", user.registerUser);
 

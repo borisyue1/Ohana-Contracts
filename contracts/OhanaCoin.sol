@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-import "./Utilities.sol";
+// import "./Utilities.sol";
 import "./Admin.sol";
 import "./Owned.sol";
 import "./Storage/OhanaCoinStorage.sol";
@@ -122,15 +122,17 @@ contract OhanaCoin is Owned {
      * @param fromBalance Which balance to withdraw from (Personal or Transferable)
      * @param _message The message to send along with the transfer
      */
-    function transfer(address _to, uint256 _value, uint fromBalance, string _message) external {
+    function transfer(address _to, uint256 _value, string fromBalance, string _message) external {
         // if (!Utilities.compareStrings(fromBalance, "Personal") && !Utilities.compareStrings(fromBalance, "Transferable")) 
         //     revert();
-        // if (Utilities.compareStrings(fromBalance, "Personal")) 
+        // if (fromBalance.compareStrings("Personal")) {
         //     balanceOf[msg.sender].personalBalance = balanceOf[msg.sender].personalBalance.sub(_value);
+        // }
         //     // _personalToPersonal(msg.sender, _to, _value, _message);
-        // else if (Utilities.compareStrings(fromBalance, "Transferable"))
+        // else if (fromBalance.compareStrings("Transferable")) {
         //     balanceOf[msg.sender].transferableBalance = balanceOf[msg.sender].transferableBalance.sub(_value); 
-        //     // _transferableToPersonal(msg.sender, _to, _value, _message);
+        // }
+            // _transferableToPersonal(msg.sender, _to, _value, _message);
         if (fromBalance == 0) {
             balanceOf[msg.sender].personalBalance = balanceOf[msg.sender].personalBalance.sub(_value);
         } else if (fromBalance == 1) {

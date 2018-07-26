@@ -12,8 +12,9 @@ const AdminStorage = artifacts.require("AdminStorage");
 
 module.exports = function(deployer) {
   deployer.deploy([Utilities, Owned, SafeMath, Leaderboard]);
-  deployer.link(Utilities, OhanaCoin);
-  deployer.link(SafeMath, OhanaCoin);
+  // deployer.link(Utilities, OhanaCoin);
+  // deployer.link(SafeMath, Owned);
+  // deployer.deploy(Owned);
   deployer.deploy(Admin, AdminStorage.address).then(function() {
   	AdminStorage.deployed().then((instance) => {
   		// Give Admin contract access to AdminStorage functions

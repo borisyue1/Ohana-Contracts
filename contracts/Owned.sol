@@ -1,11 +1,13 @@
 pragma solidity ^0.4.24;
 
 import "./SafeMath.sol";
+import "./Utilities.sol";
 
 
 contract Owned {
 
     using SafeMath for uint256; // attaches the library's functions to uint256 type
+    using Utilities for string;
 
     address public owner;
 
