@@ -75,7 +75,7 @@ exports.getLogs = (req, res, next) => {
 		let userEvents = []
 		for (var i = events.length - 1; userEvents.length < numEvents && i >= 0; i--) {
 			if (events[i].args.from == publicKey || events[i].args.to == publicKey) 
-				userEvents.push({"event": events[i].event, "fromId": events[i].args.from, 
+				userEvents.push({"eventType": events[i].event, "fromId": events[i].args.from, 
 								 "toId": events[i].args.to, "value": events[i].args.value, "message": events[i].args.message});
 		}
 		res.send({events: userEvents});
