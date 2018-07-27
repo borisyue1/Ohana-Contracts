@@ -62,7 +62,7 @@ exports.getBalances = (req, res, next) => {
 exports.getLogs = (req, res, next) => {
 	const publicKey = req.body.userId;
 	const numEvents = req.body.numEvents;
-	res.setHeader('Content-Type', 'application/json');
+	res.setHeader('Content-Type', 'text/html');
 	coinInstance.allEvents({
 		// filter: {to: '0x2c9964f6c3517e06497c1547d795c6dfc86fb273'}, 
 		fromBlock: 0, 
@@ -78,7 +78,7 @@ exports.getLogs = (req, res, next) => {
 				userEvents.push({"eventType": events[i].event, "fromId": events[i].args.from, 
 								 "toId": events[i].args.to, "value": events[i].args.value, "message": events[i].args.message});
 		}
-		res.send({events: userEvents});
+		res.send(userEvents);
 	});
 }
 
