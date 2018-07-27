@@ -74,9 +74,15 @@ exports.getLogs = (req, res, next) => {
 		//manually get five latest events pertaining to specified user since filter parameter doesn't work 
 		let userEvents = []
 		for (var i = events.length - 1; userEvents.length < numEvents && i >= 0; i--) {
+			let eventDict;
 			if (events[i].args.from == publicKey || events[i].args.to == publicKey) 
-				userEvents.push({"eventType": events[i].event, "fromId": events[i].args.from, 
-								 "toId": events[i].args.to, "value": events[i].args.value, "message": events[i].args.message});
+				eventDict = {"eventType": events[i].event, "fromId": events[i].args.from, 
+								 "toId": events[i].args.to, "value": events[i].args.value, "message": events[i].args.message};
+			if (events[i].event === "Transfer" && events[i].args.to == publicKey)
+				eventDict["transferType"] = "Received Coins";
+			else if (events[i].event === "Transfer" && events[i].args.from == publicKey)
+				eventDict["transferType"] = "Transferred Coins";
+			userEvents.push(eventDict);
 		}
 		res.send(userEvents);
 	});
