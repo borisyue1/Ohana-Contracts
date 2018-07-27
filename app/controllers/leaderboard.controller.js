@@ -12,7 +12,7 @@ Leaderboard.deployed().then((instance) => {
 });
 
 exports.getTopTen = async (req, res, next) => {
-	res.setHeader('Content-Type', 'application/json');
+	res.setHeader('Content-Type', 'text/html');
 	let users = [];
 	for (let i = 1; i < 11; i++) {
 		// we have to wait for results to populate users array
@@ -27,10 +27,10 @@ exports.getTopTen = async (req, res, next) => {
 				users.push(dict);
 			}
 		}, (error) => {
-			res.send({error: error.message})
+			res.send(error.message)
 		});
 	}
-	res.send({result: users});
+	res.send(users);
 }
 
 exports.resetLeaderboard = (req, res, next) => {
