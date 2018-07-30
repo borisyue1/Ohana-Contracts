@@ -13,6 +13,13 @@ module.exports = {
 			network_id: "*",
 			gas: 8000000,
 			gasPrice: 1
+	    },
+	    gcp: {
+	    	host: "35.230.48.31",
+	    	port: 8545,
+	    	network_id: "*",
+	    	gas: 8000000,
+			gasPrice: 1
 	    }
     }
 };
