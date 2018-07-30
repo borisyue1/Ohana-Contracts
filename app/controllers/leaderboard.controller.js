@@ -20,7 +20,7 @@ exports.getTopTen = async (req, res, next) => {
 		.then((result) => {
 			let user = result[0];
 			let balance = result[1];
-			if (user == 0 && balance == 0) //no user
+			if (user == 0 || user == 0x && balance == 0) //no user
 				return;
 			else {
 				dict = {"rank": i, "user": user, "balance": balance}; //convert to dictionary to make more readable
