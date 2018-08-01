@@ -75,7 +75,7 @@ exports.getLogs = (req, res, next) => {
 		let userEvents = []
 		for (var i = events.length - 1; userEvents.length < numEvents && i >= 0; i--) {
 			let eventDict;
-			if (events[i].args.from == publicKey || events[i].args.to == publicKey) 
+			if (events[i].args.from == publicKey || events[i].args.to == publicKey) {
 				eventDict = {"eventType": events[i].event, "fromId": events[i].args.from, 
 								 "toId": events[i].args.to, "value": events[i].args.value, "message": events[i].args.message};
 				if (events[i].event === "Transfer" && events[i].args.to == publicKey)
@@ -83,6 +83,7 @@ exports.getLogs = (req, res, next) => {
 				else if (events[i].event === "Transfer" && events[i].args.from == publicKey)
 					eventDict["transferType"] = "Transferred Coins";
 				userEvents.push(eventDict);
+			}
 		}
 		res.send({events: userEvents});
 	});
