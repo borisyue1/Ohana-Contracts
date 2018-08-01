@@ -1395,10 +1395,10 @@
     "40579": {
       "events": {},
       "links": {},
-      "address": "0xc820bf81466fa80851998f8f13153c82703b05ce",
-      "transactionHash": "0x4abfd8671c853717109f43acf79ea277fdb91755d848108b5a6030d5621d505c"
+      "address": "0x895bac5c2554d5894ec22bc1b448acb4db6e554a",
+      "transactionHash": "0xac179a4480444e9dd6019b39cf6eae159b27cce5bb5cdae65e26322283ea1a24"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-07-30T22:21:10.965Z"
+  "updatedAt": "2018-08-01T07:42:52.942Z"
 }
