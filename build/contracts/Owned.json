@@ -834,10 +834,10 @@
     "40579": {
       "events": {},
       "links": {},
-      "address": "0xcfe36efb92af5bc61a6fd064c9e230555b3dac7c",
-      "transactionHash": "0xbb6145f2675db1c1a230fc1ee00a91bb6c7a8d005cf5b9876bd1af22ef5f0759"
+      "address": "0xb2344bffccf775c79272313686fa00944990c6f6",
+      "transactionHash": "0x5ab2b6d74e2fe627ca43461d0e607a2d1b843c3090fcddf326cf62a99ec53da0"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-08-01T18:30:58.223Z"
+  "updatedAt": "2018-08-01T21:21:39.980Z"
 }

@@ -2425,10 +2425,10 @@
     "40579": {
       "events": {},
       "links": {},
-      "address": "0x07bfcfc9121cf0a2bfce47fe5f8f8061ed49d8cd",
-      "transactionHash": "0x40bfa1be20dab18420fe75c6e3adfcd63cb53cd5ebadd4c1285dc9989c4d7f48"
+      "address": "0xa79da55e83e86427a95f60d7be181061b9e49888",
+      "transactionHash": "0x063c5e046d432a9dd6de2910c4c7ad5c25524b54dc95e139d582063f7ff79174"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-08-01T18:30:58.226Z"
+  "updatedAt": "2018-08-01T21:21:39.984Z"
 }
