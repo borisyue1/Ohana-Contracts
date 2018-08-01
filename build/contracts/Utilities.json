@@ -116,7 +116,7 @@
                               "name": "abi",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3095,
+                              "referencedDeclaration": 2307,
                               "src": "312:3:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_abi",
@@ -163,7 +163,7 @@
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3102,
+                        "referencedDeclaration": 2314,
                         "src": "302:9:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -219,7 +219,7 @@
                               "name": "abi",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3095,
+                              "referencedDeclaration": 2307,
                               "src": "346:3:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_abi",
@@ -266,7 +266,7 @@
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3102,
+                        "referencedDeclaration": 2314,
                         "src": "336:9:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -499,7 +499,7 @@
                               "name": "abi",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3095,
+                              "referencedDeclaration": 2307,
                               "src": "312:3:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_abi",
@@ -546,7 +546,7 @@
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3102,
+                        "referencedDeclaration": 2314,
                         "src": "302:9:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -602,7 +602,7 @@
                               "name": "abi",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 3095,
+                              "referencedDeclaration": 2307,
                               "src": "346:3:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_abi",
@@ -649,7 +649,7 @@
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3102,
+                        "referencedDeclaration": 2314,
                         "src": "336:9:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -817,10 +817,10 @@
     "40579": {
       "events": {},
       "links": {},
-      "address": "0xcb50339f16606d7122054f4c4d16abb9194f258d",
-      "transactionHash": "0xb927b2c4a5d35bbe0110093c4f7fe207279b3f1eaeee9cb465c2e7d1f2d9a609"
+      "address": "0xc09cefc1f7b4670ec79e85c4d4e97cc9bb7cecd2",
+      "transactionHash": "0x8f4d9b436ada5906ad6e081f7c39cec9ef1314d912988d462a26f418278c7907"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-08-01T07:13:43.336Z"
+  "updatedAt": "2018-08-01T17:54:32.974Z"
 }
