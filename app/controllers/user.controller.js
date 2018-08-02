@@ -76,13 +76,14 @@ exports.getLogs = (req, res, next) => {
 		for (var i = events.length - 1; userEvents.length < numEvents && i >= 0; i--) {
 			let eventDict;
 			if (events[i].args.from == publicKey || events[i].args.to == publicKey) {
-				eventDict = {"eventType": events[i].event, "fromId": events[i].args.from, 
-								 "toId": events[i].args.to, "value": events[i].args.value, "message": events[i].args.message};
-				if (events[i].event === "Transfer" && events[i].args.to == publicKey)
-					eventDict["transferType"] = "Received Coins";
-				else if (events[i].event === "Transfer" && events[i].args.from == publicKey)
-					eventDict["transferType"] = "Transferred Coins";
-				userEvents.push(eventDict);
+				userEvents.push(events[i]);
+			// 	eventDict = {"eventType": events[i].event, "fromId": events[i].args.from, 
+			// 					 "toId": events[i].args.to, "value": events[i].args.value, "message": events[i].args.message};
+			// 	if (events[i].event === "Transfer" && events[i].args.to == publicKey)
+			// 		eventDict["transferType"] = "Received Coins";
+			// 	else if (events[i].event === "Transfer" && events[i].args.from == publicKey)
+			// 		eventDict["transferType"] = "Transferred Coins";
+			// 	userEvents.push(eventDict);
 			}
 		}
 		res.send({events: userEvents});
@@ -142,7 +143,7 @@ exports.transferTo = (req, res, next) => {
 	web3.eth.personal.unlockAccount(fromKey, password, 0).then(() => {
 		return coinInstance.transfer(toKey, value, fromBalance, message, {from: fromKey, gas:gasLimit}) //emit event to update frontend balance
 	}).then((receipt) => {
-		// res.send({error: receipt});
+		//res.send({receipt: receipt});
 		return coinInstance.getPersonalBalance(toKey, {gas: gasLimit})
 	}).catch((error) => {
 		res.send({error: error.message});
