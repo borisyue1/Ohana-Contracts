@@ -85,7 +85,7 @@ exports.getLogs = (req, res, next) => {
 				userEvents.push(eventDict);
 			}
 		}
-		//res.send({events: userEvents});
+		res.send({events: userEvents});
 	});
 }
 
