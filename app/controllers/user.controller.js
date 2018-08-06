@@ -154,7 +154,7 @@ exports.transferTo = (req, res, next) => {
 		// res.send({receipt: receipt});
 		return coinInstance.getPersonalBalance(toKey, {gas: gasLimit})
 	}).catch((error) => {
-		res.send({status: "error", error: error.message});
+		res.send({status: "error", result: error.message});
 	}).then((balance) => {
 		return leaderboardInstance.addBalance(toKey, balance, {from: fromKey, gas:gasLimit});
 	}).then(() => {
@@ -170,9 +170,9 @@ exports.registerUser = (req, res, next) => {
 		coinInstance.depositAllowance(address, {from: etherbase, gas:gasLimit})
 		.then((receipt) => {
 			// res.send({receipt: receipt});
-        	res.send({ status:"success", address: address });
+        	res.send({ status:"success", result: address });
 		}).catch((error) => {
-			res.send({ status:"error", error: error.message});
+			res.send({ status:"error", result: error.message});
 		});
 		// web3.eth.sendTransaction({
 		//    from: etherbase,
