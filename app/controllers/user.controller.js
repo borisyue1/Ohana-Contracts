@@ -161,7 +161,7 @@ exports.registerUser = (req, res, next) => {
 		coinInstance.depositAllowance(address, {from: etherbase, gas:gasLimit})
 		.then((receipt) => {
 			// res.send({receipt: receipt});
-        	// res.send({ address: address });
+        	res.send({ address: address });
 		}).catch((error) => {
 			res.send({ "deposit error": error.message});
 		});
