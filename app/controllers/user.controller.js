@@ -3,7 +3,7 @@ const OhanaCoin   = require('../contracts/OhanaCoin.js'),
 
 const config = require('../../config/config.js'),
 	  web3 = config.web3.instance,
-	  etherbase = web3.eth.defaultAccount,
+	  etherbase = web3.eth.defaultAccount.toLowerCase(),
  	  gasLimit = config.gasLimit;
 
 var coinInstance, leaderboardInstance; 
@@ -75,13 +75,22 @@ exports.getLogs = (req, res, next) => {
 		let userEvents = []
 		for (var i = events.length - 1; userEvents.length < numEvents && i >= 0; i--) {
 			let eventDict;
+			let eventMessage;
+			if (events[i].args.from == etherbase) {
+				eventMessage = "Automated deposit upon registration.";
+			} else {
+				eventMessage = events[i].args.message;
+			}
 			if (events[i].args.from == publicKey || events[i].args.to == publicKey) {
 				eventDict = {"eventType": events[i].event, "fromId": events[i].args.from, 
-								 "toId": events[i].args.to, "value": events[i].args.value, "message": events[i].args.message};
-				if (events[i].event === "Transfer" && events[i].args.to == publicKey)
+								 "toId": events[i].args.to, "value": events[i].args.value, "message": eventMessage};
+				if (events[i].args.from == etherbase) {
+					eventDict["transferType"] = "Automated Deposit";
+				} else if (events[i].event === "Transfer" && events[i].args.to == publicKey) {
 					eventDict["transferType"] = "Received Coins";
-				else if (events[i].event === "Transfer" && events[i].args.from == publicKey)
+				} else if (events[i].event === "Transfer" && events[i].args.from == publicKey) {
 					eventDict["transferType"] = "Transferred Coins";
+				}
 				userEvents.push(eventDict);
 			}
 		}
