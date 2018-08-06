@@ -246,7 +246,7 @@ contract OhanaCoin is Owned {
         delete balanceOf[_to].transferredUsers;
         balanceOf[_to].transferableBalance = balanceOf[_to].transferableBalance.add(monthlyAllowance);
         balanceOf[owner].transferableBalance = balanceOf[owner].transferableBalance.sub(monthlyAllowance);
-        _to.transfer(15 ether); // transfer ether to user to cover gas costs of transactions
+        _to.transfer(5 ether); // transfer ether to user to cover gas costs of transactions
         emit Transfer(owner, _to, monthlyAllowance, "");
     }
     
