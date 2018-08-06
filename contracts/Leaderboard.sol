@@ -8,6 +8,12 @@ contract Leaderboard {
         uint256 personalBalance;
     }
     
+    /**
+     * Adds the user and balance to the leaderboard
+     * 
+     * @param user The address of the user
+     * @param balance The balance of the user
+     */
     function addBalance(address user, uint256 balance) external returns (bool) {
         if (leaderboard[9].personalBalance >= balance) {
             // user didn't make it into top 10
@@ -45,6 +51,11 @@ contract Leaderboard {
         }
     }
 
+    /**
+     * Returns the user at the specified ranking
+     * 
+     * @param ranking The rank to retrieve the user from
+     */
     function getUser(uint ranking) external view returns (address, uint256) {
         // Can't return structs
         return (leaderboard[ranking - 1].user, leaderboard[ranking - 1].personalBalance);

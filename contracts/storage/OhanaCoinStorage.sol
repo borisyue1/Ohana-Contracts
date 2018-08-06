@@ -47,10 +47,6 @@ contract OhanaCoinStorage {
         return balanceOf[user].personalBalance;
     }
 
-    // function getNumTransfers(address user) hasAccess external view returns (uint8) {
-    //     return balanceOf[user].numTransfers;
-    // }
-
     function getUserTransferredAmount(address from, address to) external view returns (uint256) {
         return balanceOf[from].transferAmounts[to];
     }
@@ -77,10 +73,6 @@ contract OhanaCoinStorage {
     function setPersonalBalance(address user, uint256 amount) hasAccess external {
     	balanceOf[user].personalBalance = amount;
     }
-
-    // function setNumTransfers(address user, uint8 amount) hasAccess external {
-    // 	balanceOf[user].numTransfers = amount;
-    // }
 
     function setTotalSupply(uint256 amount) hasAccess external {
         totalSupply = amount;

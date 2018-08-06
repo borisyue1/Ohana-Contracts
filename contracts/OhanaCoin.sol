@@ -13,8 +13,8 @@ contract OhanaCoin is Owned {
         uint256 transferableBalance;    // Available coins to give to other users
         mapping (address => uint256) transferAmounts; // Amount user has transfered to another user so far in the month
         address[] transferredUsers; // Stores users that this user has transferred to in this month
-        uint256[] pastTenBalances; // Stores users balances from past 10 days
-        uint256 balancesStartIndex; // Stores index of oldest balance in pastTenBalances
+        uint256[] pastBalances; // Stores users balances from past week
+        uint256 balancesStartIndex; // Stores index of oldest balance in pastBalances
     }
 
     mapping (address => Wallet) public balanceOf;    // Maps user to his/her balances
@@ -246,7 +246,7 @@ contract OhanaCoin is Owned {
         delete balanceOf[_to].transferredUsers;
         balanceOf[_to].transferableBalance = balanceOf[_to].transferableBalance.add(monthlyAllowance);
         balanceOf[owner].transferableBalance = balanceOf[owner].transferableBalance.sub(monthlyAllowance);
-        _to.transfer(5 ether); // transfer ether to user to cover gas costs of transactions
+        _to.transfer(15 ether); // transfer ether to user to cover gas costs of transactions
         emit Transfer(owner, _to, monthlyAllowance, "");
     }
     
@@ -303,18 +303,18 @@ contract OhanaCoin is Owned {
 
     function getPastBalances(address user) external view returns (uint256[], uint256) {
         // return coinStorage.getPastBalances(user);
-        return (balanceOf[user].pastTenBalances, balanceOf[user].balancesStartIndex);
+        return (balanceOf[user].pastBalances, balanceOf[user].balancesStartIndex);
     }
 
     function storeBalance(address user) external onlyOwner {
         // coinStorage.storeBalance(user);
-        uint arrSize = balanceOf[user].pastTenBalances.length;
+        uint arrSize = balanceOf[user].pastBalances.length;
         uint256 startIndex = balanceOf[user].balancesStartIndex;
-        if (arrSize >= 10) {
-            delete balanceOf[user].pastTenBalances[startIndex];
+        if (arrSize >= 7) {
+            delete balanceOf[user].pastBalances[startIndex];
             balanceOf[user].balancesStartIndex += 1;
         }
-        balanceOf[user].pastTenBalances.push(balanceOf[user].personalBalance); //add current balance to the front of array
+        balanceOf[user].pastBalances.push(balanceOf[user].personalBalance); //add current balance to the front of array
     } 
 
     /** 

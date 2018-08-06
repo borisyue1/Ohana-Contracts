@@ -14,7 +14,7 @@ contract Admin is Owned {
 
     uint256 public adminUserTransferLimit = 15; // How much an admin can transfer to a user per month (from common pool)
     uint256 public adminTotalTransferLimit = 500; // How much an admin can transfer total to users in a month (from common pool)
-    uint256 public adminTotalBurnLimit = 500;
+    uint256 public adminTotalBurnLimit = 500; // How much and admin can burn in a month
 
     modifier onlyAdmin {
         require(adminStorage.isAdmin(msg.sender), "Only admins can execute this action");
@@ -61,6 +61,12 @@ contract Admin is Owned {
         emit AdminRemoved(user);
     }
 
+    /**
+    * Checks if the user is on the admin's team
+    *
+    * @param admin The admin to check
+    * @param user The user to check
+    */
     function isTeamMember(address admin, address user) external view returns (bool) {
         return adminStorage.isTeamMember(admin, user);
     }
