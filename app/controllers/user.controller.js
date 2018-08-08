@@ -126,17 +126,16 @@ exports.getPastBalances = (req, res, next) => {
 	res.setHeader('Content-Type', 'application/json');
 	coinInstance.getPastBalances(publicKey)
 	.then((result) => {
-		let pastTen = [];
+		let past = [];
 		let startIndex = result[1];
 		let pastBalances = result[0];
-		// add to array in reverse order so that latest balances are first
-		for (var i = startIndex + 10; i > startIndex && i >= 0; i--) {
+		for (var i = startIndex; i < startIndex + 10; i++) {
 			if (pastBalances[i] != null)
-				pastTen.push(pastBalances[i]); 
+				past.push(parseInt(pastBalances[i])); 
 		}
-        res.send({ pastTen: pastTen});
+        res.send({ result: past});
 	}, (error) => {
-		res.send({error: error.message})
+		res.send({result: error.message})
 	});
 }
 
