@@ -129,9 +129,11 @@ exports.getPastBalances = (req, res, next) => {
 		let past = [];
 		let startIndex = result[1];
 		let pastBalances = result[0];
-		for (var i = startIndex; i < startIndex + 10; i++) {
+		for (var i = startIndex; i < startIndex + 7; i++) {
 			if (pastBalances[i] != null)
 				past.push(parseInt(pastBalances[i])); 
+			else
+				past.push(0);
 		}
         res.send({ result: past});
 	}, (error) => {
