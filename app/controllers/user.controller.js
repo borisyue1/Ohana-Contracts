@@ -158,7 +158,7 @@ exports.transferTo = (req, res, next) => {
 	}).catch((error) => {
 		res.send({status: "error", result: error.message});
 	}).then((balance) => {
-		return leaderboardInstance.addBalance(toKey, balance, {from: fromKey, gas:gasLimit});
+		return leaderboardInstance.addBalance(toKey, balance, {from: fromKey, gas:gasLimit, gasPrice:gasPrice});
 	}).catch((error) => {
 		res.send({status: "error", result: error.message});
 	}).then(() => {
