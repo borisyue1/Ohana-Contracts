@@ -4,7 +4,7 @@ const url = "http://" + truffleConfig.host + ':' + truffleConfig.port;
 const Web3 = require('web3'),
 	  web3 = new Web3(new Web3.providers.HttpProvider(url));
 
-web3.eth.defaultAccount = "0x27eb86e0975889421de2de479250e011d95bee4c";
+web3.eth.defaultAccount = "0xd4b76fca59aaab8e3aab5c1db6092ebb9df41d74";
 
 module.exports = {
 	web3: {

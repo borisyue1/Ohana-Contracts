@@ -65,7 +65,7 @@ contract OhanaCoin is Owned {
         coinStorage = OhanaCoinStorage(storageContract); // Create an instance of the storage
         owner = msg.sender;                                     // Owner will mint new coins every month
         totalSupply = initialSupply;                                    // Set totalSupply
-        //balanceOf[msg.sender].transferableBalance = totalSupply;        // Give the creator all initial tokens
+        balanceOf[msg.sender].transferableBalance = totalSupply;        // Give the creator all initial tokens
     }
 
     function _addTransferredUser(address _from, address _to) internal {
@@ -272,8 +272,8 @@ contract OhanaCoin is Owned {
     }
 
     function getTransferableBalance(address user) public view returns (uint256) {
-        return coinStorage.getTransferableBalance(user);
-        // return balanceOf[user].transferableBalance;
+        //return coinStorage.getTransferableBalance(user);
+        return balanceOf[user].transferableBalance;
     }
 
     function getPersonalBalance(address user) public view returns (uint256) {
