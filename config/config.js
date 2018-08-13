@@ -12,5 +12,6 @@ module.exports = {
 		url: url,
 		defaultAccount: web3.eth.defaultAccount
 	},
-	gasLimit: 8000000
+	gasLimit: 8000000,
+	gasPrice: 1
 }

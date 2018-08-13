@@ -4,7 +4,8 @@ const OhanaCoin   = require('../contracts/OhanaCoin.js'),
 const config = require('../../config/config.js'),
 	  web3 = config.web3.instance,
 	  etherbase = web3.eth.defaultAccount.toLowerCase(),
- 	  gasLimit = config.gasLimit;
+ 	  gasLimit = config.gasLimit,
+ 	  gasPrice = config.gasPrice;
 
 var coinInstance, leaderboardInstance; 
 var personalBalance, transferableBalance;
@@ -150,7 +151,7 @@ exports.transferTo = (req, res, next) => {
 	const password = req.body.password;
 	res.setHeader('Content-Type', 'application/json');
 	web3.eth.personal.unlockAccount(fromKey, password, 0).then(() => {
-		return coinInstance.transfer(toKey, value, fromBalance, message, {from: fromKey, gas:gasLimit}) //emit event to update frontend balance
+		return coinInstance.transfer(toKey, value, fromBalance, message, {from: fromKey, gas:gasLimit, gasPrice:gasPrice}) 
 	}).then((receipt) => {
 		// res.send({receipt: receipt});
 		return coinInstance.getPersonalBalance(toKey, {gas: gasLimit})
@@ -158,6 +159,8 @@ exports.transferTo = (req, res, next) => {
 		res.send({status: "error", result: error.message});
 	}).then((balance) => {
 		return leaderboardInstance.addBalance(toKey, balance, {from: fromKey, gas:gasLimit});
+	}).catch((error) => {
+		res.send({status: "error", result: error.message});
 	}).then(() => {
 		res.send({status: "success", result: "submitted to leaderboard" });
 	});		
@@ -175,29 +178,6 @@ exports.registerUser = (req, res, next) => {
 		}).catch((error) => {
 			res.send({ status:"error", result: error.message});
 		});
-		// web3.eth.sendTransaction({
-		//    from: etherbase,
-		//    to: address,
-		//    value: web3.utils.toWei('1'),
-		//    gas: gasLimit,
-		//    gasPrice: 0,
-		// })
-		// .on('receipt', (receipt) => {
-		// 	// if (num == 3) { //3 blocks of confirmation for security (12 is max)
-		// 	//temporarily unlock account to make transaction
-		// 	console.log(receipt);
-		// 	coinInstance.depositAllowance(address, {from: etherbase, gas:gasLimit})
-		// 	.then(() => {
-		// 		res.setHeader('Content-Type', 'application/json');
-	 //        	res.send({ address: address });
-		// 	}).catch((error) => {
-		// 		res.send({ "deposit error": error.message});
-		// 	});
-		// 	// } 
-		// })
-		// .on('error', (error) => {
-		// 	res.send({ "send error": error.message});
-		// });
 	});
 }
 
