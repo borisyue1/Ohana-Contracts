@@ -4,7 +4,7 @@ module.exports = {
     networks: {
 	    development: {
 			host: "127.0.0.1",
-			port: 7545,
+			port: 8545,
 			network_id: "*"
 	    }, 
 	    aws: {
@@ -15,7 +15,7 @@ module.exports = {
 			gasPrice: 1
 	    },
 	    gcp: {
-	    	host: "35.236.66.200",
+	    	host: "35.230.48.31",
 	    	port: 8545,
 	    	network_id: "*",
 	    	gas: 8000000,
