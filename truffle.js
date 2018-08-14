@@ -15,7 +15,7 @@ module.exports = {
 			gasPrice: 1
 	    },
 	    gcp: {
-	    	host: "35.230.48.31",
+	    	host: "35.233.242.99",
 	    	port: 8545,
 	    	network_id: "*",
 	    	gas: 8000000,

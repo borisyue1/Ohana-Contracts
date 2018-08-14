@@ -24219,10 +24219,10 @@
       "links": {
         "Utilities": "0x6987b1cfaf2136f249069eb6cfcbb97310c452f4"
       },
-      "address": "0x3fd5b5d73dda42486beab8cc36327c34eacf4a30",
-      "transactionHash": "0x4252661980b21c70ef0a73380e2f7dfa223e3ae449f1e7b4ee9c9d8d3dcf73f6"
+      "address": "0x6f3885efc1d3618a140d6184f0d244b14abad66d",
+      "transactionHash": "0x16e22cf0f55e7741e2acc6316c97c88962bb14a5c38995dfc0b959ff4bb19bb7"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-14T00:05:05.776Z"
+  "updatedAt": "2018-08-14T17:55:57.134Z"
 }
