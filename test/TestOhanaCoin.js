@@ -62,26 +62,26 @@ contract('OhanaCoin', function(accounts) {
 	   	await instance.depositAllowance(accounts[1], {from: accounts[0]}); // Transfer those tokens to account 1 transfer balance
 	    let oldPersonalBalance = (await instance.getPersonalBalance(accounts[2])).toNumber();
 	    let oldTransferBalance = (await instance.getTransferableBalance(accounts[2])).toNumber();
-	    await instance.transfer(accounts[2], transferAmount, "Transferable", "", {from: accounts[1]});
+	    await instance.transfer(accounts[2], transferAmount, 1, "", {from: accounts[1]});
 	    let newPersonalBalance = (await instance.getPersonalBalance(accounts[2])).toNumber();
 	    let newTransferBalance = (await instance.getTransferableBalance(accounts[2])).toNumber();
 	    assert.equal(oldPersonalBalance + transferAmount, newPersonalBalance, "didn't transfer 10 tokens into account 2's personal balance");
 	    assert.equal(oldTransferBalance, newTransferBalance, "account 2's transferable balance was changed after transfer from account 1");
 	});
 
-	// transfer(), personalToPersonal
-	it("should transfer 10 tokens from account 1's personal balance to account 2's personal balance", async () => {
-	    let instance = await OhanaCoin.deployed();
-	   	await instance.depositAllowance(accounts[2], {from: accounts[0]}); // Transfer those tokens to account 2 transfer balance
-	   	await instance.transfer(accounts[1], transferAmount, "Transferable", "", {from: accounts[2]}); // Transfer those tokens to account 1 personal balance
-	    let oldPersonalBalance = (await instance.getPersonalBalance(accounts[2])).toNumber();
-	    let oldTransferBalance = (await instance.getTransferableBalance(accounts[1])).toNumber(); // Account 1's transferable balance, not account 2
-	    await instance.transfer(accounts[2], transferAmount, "Personal", "", {from: accounts[1]});
-	    let newPersonalBalance = (await instance.getPersonalBalance(accounts[2])).toNumber();
-	    let newTransferBalance = (await instance.getTransferableBalance(accounts[1])).toNumber(); // Account 1's transferable balance, not account 2
-	    assert.equal(oldPersonalBalance + transferAmount, newPersonalBalance, "didn't transfer 10 tokens into account 2's personal balance");
-	    assert.equal(oldTransferBalance, newTransferBalance, "account 1's transferable balance was changed after transfer from account 1");
-	});
+	// // transfer(), personalToPersonal
+	// it("should transfer 10 tokens from account 1's personal balance to account 2's personal balance", async () => {
+	//     let instance = await OhanaCoin.deployed();
+	//    	await instance.depositAllowance(accounts[2], {from: accounts[0]}); // Transfer those tokens to account 2 transfer balance
+	//    	await instance.transfer(accounts[1], transferAmount, "Transferable", "", {from: accounts[2]}); // Transfer those tokens to account 1 personal balance
+	//     let oldPersonalBalance = (await instance.getPersonalBalance(accounts[2])).toNumber();
+	//     let oldTransferBalance = (await instance.getTransferableBalance(accounts[1])).toNumber(); // Account 1's transferable balance, not account 2
+	//     await instance.transfer(accounts[2], transferAmount, "Personal", "", {from: accounts[1]});
+	//     let newPersonalBalance = (await instance.getPersonalBalance(accounts[2])).toNumber();
+	//     let newTransferBalance = (await instance.getTransferableBalance(accounts[1])).toNumber(); // Account 1's transferable balance, not account 2
+	//     assert.equal(oldPersonalBalance + transferAmount, newPersonalBalance, "didn't transfer 10 tokens into account 2's personal balance");
+	//     assert.equal(oldTransferBalance, newTransferBalance, "account 1's transferable balance was changed after transfer from account 1");
+	// });
 
 	// transfer()
 	it("should fail because fromBalance value is not valid for transfer function", async () => {
@@ -101,7 +101,7 @@ contract('OhanaCoin', function(accounts) {
 	    let instance = await OhanaCoin.deployed();
 	    await instance.depositAllowance(accounts[1], {from: accounts[0]}); // Transfer those tokens to account 1 transfer balance
 	    try {
-	    	await instance.transfer(accounts[2], 25, "Transferable", "", {from: accounts[1]});
+	    	await instance.transfer(accounts[2], 25, 1, "", {from: accounts[1]});
 	    	// The line will only be hit if no error is thrown above!
     		throw new Error("Expected an error and didn't get one!");
 	    } catch (err) {
@@ -165,7 +165,7 @@ contract('OhanaCoin', function(accounts) {
 	    await instance.depositAllowance(accounts[1], {from: accounts[0]}); // Transfer those tokens to account 1 transfer balance
 	    let oldPersonalBalance = (await instance.getPersonalBalance(accounts[1])).toNumber();
 	    let oldTransferBalance = (await instance.getTransferableBalance(accounts[1])).toNumber();
-	    await instance.ownerBurnFrom(accounts[1], burnAmount, "Transferable", {from: accounts[0]});
+	    await instance.ownerBurnFrom(accounts[1], burnAmount, 1, {from: accounts[0]});
 	    let newPersonalBalance = (await instance.getPersonalBalance(accounts[1])).toNumber();
 	    let newTransferBalance = (await instance.getTransferableBalance(accounts[1])).toNumber();
 	    assert.equal(oldPersonalBalance, newPersonalBalance, "account 1's personal balance was changed after burning");
@@ -176,7 +176,7 @@ contract('OhanaCoin', function(accounts) {
 	it("should make root burn 10 tokens in the account 3's personal balance", async () => {
 	    let instance = await OhanaCoin.deployed();
 	    await instance.depositAllowance(accounts[2], {from: accounts[0]}); // Transfer those tokens to account 2 transfer balance
-	    await instance.transfer(accounts[3], burnAmount, "Transferable", "", {from: accounts[2]}); // Put those in account 3's personal balance
+	    await instance.transfer(accounts[3], burnAmount, 1, "", {from: accounts[2]}); // Put those in account 3's personal balance
 	    let oldPersonalBalance = (await instance.getPersonalBalance(accounts[3])).toNumber();
 	    let oldTransferBalance = (await instance.getTransferableBalance(accounts[3])).toNumber();
 	    await instance.ownerBurnFrom(accounts[3], burnAmount, "Personal", {from: accounts[0]});
@@ -191,7 +191,7 @@ contract('OhanaCoin', function(accounts) {
 	    let instance = await OhanaCoin.deployed();
 	    let admin = await Admin.deployed();
 	    await instance.depositAllowance(accounts[1], {from: accounts[0]}); // Transfer those tokens to account 1 transfer balance
-	    await instance.transfer(accounts[2], burnAmount, "Transferable", "", {from: accounts[1]}); // Put those in account 2's personal balance
+	    await instance.transfer(accounts[2], burnAmount, 1, "", {from: accounts[1]}); // Put those in account 2's personal balance
 	    await admin.addAdmin(accounts[1], [accounts[2]], {from: accounts[0]}); // Make account 1 an admin
 	    let oldPersonalBalance = (await instance.getPersonalBalance(accounts[2])).toNumber();
 	    let oldTransferBalance = (await instance.getTransferableBalance(accounts[2])).toNumber();
@@ -238,9 +238,9 @@ contract('OhanaCoin', function(accounts) {
 	    await instance.mintTokens(transferAmount * 2, {from: accounts[0]}) // Mint tokens first so we have something to transfer
 	    await instance.depositAllowance(accounts[1], {from: accounts[0]}); // Deposit half those tokens to account 1 transfer balance
 	    await instance.depositAllowance(accounts[2], {from: accounts[0]}); // Deposit other half to account 2 transfer balance
-	    await instance.transfer(accounts[1], transferAmount, "Transferable", "", {from: accounts[2]}); // Transfer to account 1's personal balance
+	    await instance.transfer(accounts[1], transferAmount, 1, "", {from: accounts[2]}); // Transfer to account 1's personal balance
 	    // Now, account 1 should have transferAmount in personal and transferable balance
-	    await instance.transfer(accounts[2], 1, "Transferable", "", {from: accounts[1]}); // Increase account 1's num transfers by 1
+	    await instance.transfer(accounts[2], 1, 1, "", {from: accounts[1]}); // Increase account 1's num transfers by 1
 	    let oldNumTransferred = (await instance.getNumTransferredUsers(accounts[1])).toNumber();
 	    assert.equal(oldNumTransferred, 1, "account 1's num transferred users wasn't incremented after transfer");
 	    // Now, reset the balances

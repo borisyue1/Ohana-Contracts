@@ -27,7 +27,9 @@ contract OhanaCoin is Owned {
         require(_to != 0x0, "Invalid send address (0)");
         // Check if sender has transferred too much already
         if (_from != owner)
-            require(coinStorage.getUserTransferredAmount(_from, _to).add(_value) <= userTransferAmountLimit, 
+            //require(coinStorage.getUserTransferredAmount(_from, _to).add(_value) <= userTransferAmountLimit, 
+             //   "You have transferred too much to this user already");
+             require(balanceOf[_from].transferAmounts[_to].add(_value) <= userTransferAmountLimit, 
                 "You have transferred too much to this user already");
         _;
     }
@@ -82,9 +84,8 @@ contract OhanaCoin is Owned {
      * @param _from The address of the sender
      * @param _to The address of the recipient
      * @param _value The amount to send
-     * @param _message The message to send along with the transfer
      */
-    function _transferableToPersonal(address _from, address _to, uint _value, string _message) internal transferChecks(_from, _to, _value) {
+    function _transferableToPersonal(address _from, address _to, uint _value) internal transferChecks(_from, _to, _value) {
         // Subtract from the sender
         // coinStorage.setTransferableBalance(_from, coinStorage.getTransferableBalance(_from).sub(_value)); // using safemath library 
         // // Add the same to the recipient
@@ -101,9 +102,8 @@ contract OhanaCoin is Owned {
      * @param _from The address of the sender
      * @param _to The address of the recipient
      * @param _value The amount to send
-     * @param _message The message to send along with the transfer
      */
-    function _personalToPersonal(address _from, address _to, uint _value, string _message) internal transferChecks(_from, _to, _value) {
+    function _personalToPersonal(address _from, address _to, uint _value) internal transferChecks(_from, _to, _value) {
          // Subtract from the sender
         // coinStorage.setPersonalBalance(_from, coinStorage.getPersonalBalance(_from).sub(_value));
         // // Add the same to the recipient
@@ -163,7 +163,8 @@ contract OhanaCoin is Owned {
         //     return false;
         // } 
         admin.reduceAdminTransferAllowance(msg.sender, _to, _value); // Update the balances/allownances
-        _transferableToPersonal(owner, _to, _value, _message);         // Transfer to spending balance
+        _transferableToPersonal(owner, _to, _value);         // Transfer to spending balance
+        emit Transfer(msg.sender, _to, _value, _message);
         return true;
     }
 
@@ -246,7 +247,7 @@ contract OhanaCoin is Owned {
         delete balanceOf[_to].transferredUsers;
         balanceOf[_to].transferableBalance = balanceOf[_to].transferableBalance.add(monthlyAllowance);
         balanceOf[owner].transferableBalance = balanceOf[owner].transferableBalance.sub(monthlyAllowance);
-        _to.transfer(8 ether); // transfer ether to user to cover gas costs of transactions
+        _to.transfer(5 ether); // transfer ether to user to cover gas costs of transactions
         emit Transfer(owner, _to, monthlyAllowance, "");
     }
     
