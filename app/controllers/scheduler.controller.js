@@ -18,16 +18,6 @@ var initDepositScheduler = () => {
 			result.forEach((account) => {
 				if (account != etherbase)
 					owner.scheduledDeposit("root", account);
-				// web3.eth.sendTransaction({
-				//    from: etherbase,
-				//    to: address,
-				//    value: web3.utils.toWei('1'),
-				//    gas: gasLimit,
-				//    gasPrice: 0,
-				// })
-				// .on('receipt', (receipt) => {
-					
-				// })
 			});
 		});
 	});
@@ -46,7 +36,7 @@ var initResetScheduler = () => {
 	return scheduler;
 }
 
-// Stores the previous 10 days of balances for users, gets called at 12 AM everyday to update balances
+// Stores the previous week of balances for users, gets called at 12 AM everyday to update balances
 var initBalanceTrackScheduler = () => {
 	let scheduler = schedule.scheduleJob("0 0 12 * 1-7", () => { //every four months
 	  	accounts.then((result) => {
@@ -87,6 +77,16 @@ exports.nextReset = (req, res, next) => {
 	let timeDiff = getTimeDifference(nextDate, Date.now());
 	res.setHeader('Content-Type', 'application/json');
 	res.send({Days: + timeDiff[0], Hours: + timeDiff[1], "Next Reset": mmddyy});
+}
+
+exports.setDepositDate = (req, res, next) => {
+	const year = req.body.year,
+	 	  month = req.body.month,
+	 	  day = req.body.day,
+	 	  newDate = new Date(year, month - 1, day);
+	depositScheduler.reschedule(newDate);
+	res.setHeader('Content-Type', 'application/json');
+	res.send({date: newDate});
 }
 
 exports.setResetDate = (req, res, next) => {

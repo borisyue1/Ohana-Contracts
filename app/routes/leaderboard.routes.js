@@ -3,7 +3,7 @@ const router = require('express').Router(),
 
 router.get('/', leaderboard.getTopTen);
 
-router.patch('/reset', leaderboard.resetLeaderboard);
+router.post('/reset', leaderboard.resetLeaderboard);
 
 
 module.exports = router;

@@ -2,17 +2,17 @@ const router = require('express').Router(),
 	  admin   = require('../controllers/admin.controller.js');
 
 // Read values
+router.get('/userTransferLimit', admin.getUserTransferLimit);
+
+router.get('/totalTransferLimit', admin.getTotalTransferLimit);
+
+router.get('/totalBurnLimit', admin.getTotalBurnLimit);
+
 router.post('/transferableBalance', admin.getTransferableBalance);
 
 router.post('/userAllowance', admin.getUserAllowance);
 
 router.post('/burnBalance', admin.getBurnBalance);
-
-router.post('/userTransferLimit', admin.getUserTransferLimit);
-
-router.post('/totalTransferLimit', admin.getTotalTransferLimit);
-
-router.post('/totalBurnLimit', admin.getTotalBurnLimit);
 
 router.post('/isAdmin', admin.isAdmin);
 

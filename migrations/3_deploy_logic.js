@@ -20,7 +20,8 @@ module.exports = function(deployer) {
   		// Give Admin contract access to AdminStorage functions
   		instance.allowAccess(Admin.address);
   	});
-  	return deployer.deploy(OhanaCoin, 10000000, Admin.address, OhanaCoinStorage.address, {value:web3.toWei('50', 'ether')});
+    // deposit 5000 ether into the OhanaCoin contract, which is sent to users upon registration and in monthly deposits (depositAllowance)
+  	return deployer.deploy(OhanaCoin, 10000000, Admin.address, OhanaCoinStorage.address, {value:web3.toWei('5000', 'ether')});
   }).then(() => {
   	OhanaCoinStorage.deployed().then((instance) => {
   		// Give OhanaCoin contract access to OhanaCoinStorage functions

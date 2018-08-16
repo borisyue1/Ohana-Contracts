@@ -98,6 +98,17 @@ exports.isAdmin = (req, res, next) => {
 	});
 }
 
+exports.getTeam = (req, res, next) => {
+	const adminKey = req.body.adminId;
+	res.setHeader('Content-Type', 'application/json');
+	adminInstance.getTeamMembers(adminKey, {gas: gasLimit})
+	.then((result) => {
+		res.send({team: result});
+	}, (error) => {
+		res.send({error: error.message});
+	});
+}
+
 exports.isTeamMember = (req, res, next) => {
 	const adminKey = req.body.adminId;
 	const userKey = req.body.userId;
@@ -146,12 +157,13 @@ exports.burnFrom = (req, res, next) => {
 }
 
 exports.addAdmin = (req, res, next) => {
-	const publicKey = req.body.adminId;
+	const adminKey = req.body.adminId;
+	const userKey = req.body.userId;
 	const password = req.body.password;
 	const team = req.body.team;
 	res.setHeader('Content-Type', 'application/json');
-	web3.eth.personal.unlockAccount(etherbase, password, 10).then(() => {
-		return adminInstance.addAdmin(publicKey, [team], {from: etherbase, gas: gasLimit})
+	web3.eth.personal.unlockAccount(adminKey, password, 10).then(() => {
+		return adminInstance.addAdmin(userKey, [team], {from: adminKey, gas: gasLimit})
 	}).then((result) => {
 		res.send({ addAdmin: result });
 	}).catch((error) => {
@@ -160,24 +172,14 @@ exports.addAdmin = (req, res, next) => {
 }
 
 exports.removeAdmin = (req, res, next) => {
-	const publicKey = req.body.adminId;
+	const adminKey = req.body.adminId;
+	const userKey = req.body.userId;
 	const password = req.body.password;
 	res.setHeader('Content-Type', 'application/json');
-	web3.eth.personal.unlockAccount(etherbase, password, 10).then(() => {
-		return adminInstance.removeAdmin(publicKey, {from: etherbase, gas: gasLimit})
+	web3.eth.personal.unlockAccount(adminKey, password, 10).then(() => {
+		return adminInstance.removeAdmin(userKey, {from: adminKey, gas: gasLimit})
 	}).then((result) => {
 		res.send({ removeAdmin: result });
-	});
-}
-
-exports.getTeam = (req, res, next) => {
-	const adminKey = req.body.adminId;
-	res.setHeader('Content-Type', 'application/json');
-	adminInstance.getTeamMembers(adminKey, {gas: gasLimit})
-	.then((result) => {
-		res.send({team: result});
-	}, (error) => {
-		res.send({error: error.message});
 	});
 }
 

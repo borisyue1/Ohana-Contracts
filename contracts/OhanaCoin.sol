@@ -25,6 +25,7 @@ contract OhanaCoin is Owned {
     modifier transferChecks(address _from, address _to, uint256 _value) {
         // Prevent transfer to 0x0 address. Use burn() instead
         require(_to != 0x0, "Invalid send address (0)");
+        require(_from != _to, "Can not send to yourself");
         // Check if sender has transferred too much already
         if (_from != owner)
             //require(coinStorage.getUserTransferredAmount(_from, _to).add(_value) <= userTransferAmountLimit, 
@@ -52,7 +53,7 @@ contract OhanaCoin is Owned {
     
     // This generates a public event on the blockchain that will notify clients (transaction)
     event Transfer(address indexed from, address indexed to, uint256 value, string message);
-    event Burn(address indexed from, uint256 value, string balanceType, string burnType);
+    event Burn(address indexed from, uint256 value, uint balanceType, string burnType);
     event Reset(address indexed to);
     event Error(string message);
 
@@ -183,7 +184,7 @@ contract OhanaCoin is Owned {
         // coinStorage.setTotalSupply(coinStorage.totalSupply().sub(_value));
         balanceOf[_from].personalBalance = balanceOf[_from].personalBalance.sub(_value);
         totalSupply = totalSupply.sub(_value);
-        emit Burn(_from, _value, "Personal", "Admin");
+        emit Burn(_from, _value, 0, "Admin");
     }   
     
     /**
@@ -195,12 +196,12 @@ contract OhanaCoin is Owned {
      * @param _value The amount of money to burn
      * @param balanceType Which balance to burn from (Transferable or Personal)
      */
-    function ownerBurnFrom(address _from, uint256 _value, string balanceType) public onlyOwner {
-        if (Utilities.compareStrings(balanceType, "Transferable")) {    // Subtract from the targeted balance
+    function ownerBurnFrom(address _from, uint256 _value, uint balanceType) public onlyOwner {
+        if (balanceType == 1) {    // Subtract from the targeted balance
             balanceOf[_from].transferableBalance = balanceOf[_from].transferableBalance.sub(_value);
             // coinStorage.setTransferableBalance(_from, coinStorage.getTransferableBalance(_from).sub(_value));
         }
-        else if (Utilities.compareStrings(balanceType, "Personal")) {
+        else if (balanceType == 0) {
             balanceOf[_from].personalBalance = balanceOf[_from].personalBalance.sub(_value);
             // coinStorage.setPersonalBalance(_from, coinStorage.getPersonalBalance(_from).sub(_value));
         }
@@ -220,8 +221,8 @@ contract OhanaCoin is Owned {
         // Burn the users balances
         uint256 transferableBalance = getTransferableBalance(_to);
         uint256 personalBalance = getPersonalBalance(_to);
-        ownerBurnFrom(_to, transferableBalance, "Transferable");
-        ownerBurnFrom(_to, personalBalance, "Personal");
+        ownerBurnFrom(_to, transferableBalance, 1);
+        ownerBurnFrom(_to, personalBalance, 0);
         mintTokens(1000000); //add more tokens to the common pool
         depositAllowance(_to); // deposit the monthlyAllowance as well
         if (admin.isAdmin(_to)) {

@@ -12,7 +12,7 @@ OhanaCoin.deployed().then((instance) => {
 });
 
 exports.burnFrom = (req, res, next) => {
-	const toKey = req.body.toId;
+	const toKey = req.body.userId;
 	const value = req.body.value;
 	const balanceType = req.body.balanceType;
 	const password = req.body.password;
@@ -22,7 +22,7 @@ exports.burnFrom = (req, res, next) => {
 	}).catch((error) => {
 		res.send({ error: error.message });
 	}).then((result) => {
-		if (balanceType == "Transferable") 
+		if (balanceType == 1) 
 			return coinInstance.getTransferableBalance(toKey, {gas: gasLimit})
 		else
 			return coinInstance.getPersonalBalance(toKey, {gas: gasLimit})
@@ -33,7 +33,7 @@ exports.burnFrom = (req, res, next) => {
 
 exports.depositAllowance = async (req, res, next) => {
 	const password = req.body.password;
-	const toKey = req.body.toId;
+	const toKey = req.body.userId;
 	res.setHeader('Content-Type', 'application/json');
 	res.send({address: await deposit(password, toKey)});
 }
