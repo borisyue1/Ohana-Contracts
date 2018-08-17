@@ -67,23 +67,23 @@ Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 	* Request body params: 
 		* userId - String
 	* Description - returns personal and transferable balances for the user 
-/user/balances 
-Method - POST
-Request body params: 
-userId - String
-numEvents - Integer
-Description - returns the past numEvents transactions the user was involved in
-/user/transferredUsers 
-Method - POST
-Request body params 
-userId - String
-Description - returns an array of users that the user has transferred to
-/user/userTransferredAmount 
-Method - POST
-Request body params
-fromId - String
-toId - String
-Description - returns how much user fromId has transferred to toId so far
+* **/user/balances** 
+	* Method - POST
+	* Request body params: 
+		* userId - String
+		* numEvents - Integer
+	* Description - returns the past numEvents transactions the user was involved in
+* **/user/transferredUsers** 
+	* Method - POST
+	* Request body params 
+		* userId - String
+	* Description - returns an array of users that the user has transferred to
+* **/user/userTransferredAmount** 
+	* Method - POST
+	* Request body params
+		* fromId - String
+		* toId - String
+	* Description - returns how much user fromId has transferred to toId so far
 /user/pastBalances 
 Method - POST
 Request body params
