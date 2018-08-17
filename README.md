@@ -107,37 +107,37 @@ Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 etherbase account needs to be unlocked for this
 		
 **Admin API**:
-/admin/userTransferLimit 
-Method - GET
-Description - global variable, returns the max amount that admins can transfer to a particular users 
-/admin/totalTransferLimit 
-Method - GET
-Description - global variable, returns the total amount that admins can transfer
-/admin/totalBurnLimit 
-Method - GET
-Description - global variable, returns the total amount that admins can burn
-/admin/transferableBalance 
-Method - POST
-Request body params: 
-adminId - String
-Description - returns total amount left that particular admin is allowed to transfer
-/admin/userAllowance 
-Method - POST
-Request body params: 
-adminId - String
-userId - String
-Description - returns amount left that admin is allowed to transfer to user userId
-/admin/burnBalance 
-Method - POST
-Request body params: 
-adminId - String
-userId - String
-Description - returns amount left that admin is allowed to burn from user userId’s balance
-/admin/isAdmin 
-Method - POST
-Request body params
-adminId - String
-Description - returns whether user is an admin or not
+* **/admin/userTransferLimit** 
+	* Method - GET
+	* Description - global variable, returns the max amount that admins can transfer to a particular users 
+* **/admin/totalTransferLimit** 
+	* Method - GET
+	* Description - global variable, returns the total amount that admins can transfer
+* **/admin/totalBurnLimit** 
+	* Method - GET
+	* Description - global variable, returns the total amount that admins can burn
+* **/admin/transferableBalance** 
+	* Method - POST
+	* Request body params: 
+		* adminId - String
+	* Description - returns total amount left that particular admin is allowed to transfer
+* **/admin/userAllowance** 
+	* Method - POST
+	* Request body params: 
+		* adminId - String
+		* userId - String
+	* Description - returns amount left that admin is allowed to transfer to user userId
+* **/admin/burnBalance** 
+	* Method - POST
+	* Request body params: 
+		* adminId - String
+		* userId - String
+	* Description - returns amount left that admin is allowed to burn from user userId’s balance
+* **/admin/isAdmin** 
+	* Method - POST
+	* Request body params
+		* adminId - String
+	* Description - returns whether user is an admin or not
 /admin/team 
 Method - POST
 Request body params
