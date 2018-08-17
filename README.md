@@ -18,24 +18,24 @@
 
 Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 
-App:
-/app/routes - routing files
-/app/controllers - controller files
-/app/contracts - create the web3 contract instances
-Build:
-/build/contracts - compiled contracts (includes ABI)
-Config:
-/config/config.js - sets up the web3 instance and specifies address of etherbase
-Contracts:
-/contracts - all Solidity contracts
-/contracts/storage - storage contracts
-Migrations (AKA contract deployment):
-/migrations/1_initial_migration.js - default migration file that is run first (comes with Truffle)
-/migrations/2_deploy_storage.js - deploys storage contracts
-/migrations/3_deploy_logic.js - deploys logic contracts
-Test:
-/test - solidity/javascript code that tests the contracts
-To run all tests, type truffle test. To test a specific file, type truffle test ./test/<file_name>
+### App:
+* /app/routes - routing files
+* /app/controllers - controller files
+* /app/contracts - create the web3 contract instances
+### Build:
+* /build/contracts - compiled contracts (includes ABI)
+### Config:
+* /config/config.js - sets up the web3 instance and specifies address of etherbase
+### Contracts:
+* /contracts - all Solidity contracts
+* /contracts/storage - storage contracts
+### Migrations (AKA contract deployment):
+* /migrations/1_initial_migration.js - default migration file that is run first (comes with Truffle)
+* /migrations/2_deploy_storage.js - deploys storage contracts
+* /migrations/3_deploy_logic.js - deploys logic contracts
+### Test:
+* /test - solidity/javascript code that tests the contracts
+	* To run all tests, type truffle test. To test a specific file, type truffle test ./test/<file_name>
 
 ## Edit Contracts and Redeploy:
 Once you’ve finished editing the contract, make sure the web3.eth.defaultAccount value in /config/config.js matches the root account of the nodes you are deploying to. Also, make sure the truffleConfig variable is referring to the correct network: 
