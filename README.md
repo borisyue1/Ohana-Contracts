@@ -35,16 +35,16 @@ Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 * /migrations/3_deploy_logic.js - deploys logic contracts
 ### Test:
 * /test - solidity/javascript code that tests the contracts
-	* To run all tests, type truffle test. To test a specific file, type truffle test ./test/<file_name>
+	* To run all tests, type **truffle test**. To test a specific file, type **truffle test ./test/<file_name>**
 
 ## Edit Contracts and Redeploy:
-Once you’ve finished editing the contract, make sure the web3.eth.defaultAccount value in /config/config.js matches the root account of the nodes you are deploying to. Also, make sure the truffleConfig variable is referring to the correct network: 
-const truffleConfig = require('../truffle.js').networks.<network_name>
-To see and edit the available networks, refer to the truffle.js file. 
-Run truffle migrate -f 3 --network <network_name> to just deploy the logic (not storage) contracts.
-This will only run /migrations/3_deploy_logic.js. If you’d like the add more migration files, name it <number>_<file_name>.js. For example, if you create 4_deploy_other_files.js, run truffle migrate -f 4 --network <network_name> to run it.
-If, however, you’d like to redeploy all contracts (including storage ones), run truffle migrate --reset --network <network_name>.  
-After deployment, re-push the project to the remote instances since the build files have been modified, and Truffle will need the updated build files to allow web3 to connect to the Ethereum nodes.
+1. Once you’ve finished editing the contract, make sure the web3.eth.defaultAccount value in /config/config.js matches the root account of the nodes you are deploying to. Also, make sure the truffleConfig variable is referring to the correct network: 
+**const truffleConfig = require('../truffle.js').networks.<network_name>**
+	1. To see and edit the available networks, refer to the truffle.js file. 
+2. Run **truffle migrate -f 3 --network <network_name>** to just deploy the logic (not storage) contracts.
+	1. This will only run /migrations/3_deploy_logic.js. If you’d like the add more migration files, name it <number>_<file_name>.js. For example, if you create 4_deploy_other_files.js, run **truffle migrate -f 4 --network <network_name>** to run it.
+	2. If, however, you’d like to redeploy all contracts (including storage ones), run **truffle migrate --reset --network <network_name>**.  
+3. After deployment, re-push the project to the remote instances since the build files have been modified, and Truffle will need the updated build files to allow web3 to connect to the Ethereum nodes.
 
 
 ## Shortcomings/To-Do
