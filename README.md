@@ -1,6 +1,6 @@
 # Ohana-Contracts
 
-# Set Up Geth Locally:
+## Set Up Geth Locally:
 
 ## Install Ethereum and Geth
 ## Start Geth node:
@@ -14,7 +14,7 @@ Once you’ve started the geth node and are in the Javascript console, type pers
 To start the miner type miner.start(), which will deposit the ether rewards into the etherbase’s account. To stop, type miner.stop()
 Refer to this doc for all the available APIs and functions. **To use a specific API in the console, make sure it’s included in the --rpcapi command when starting the geth node up
 
-# Project Folder Structure:
+## Project Folder Structure:
 
 Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 
@@ -37,7 +37,7 @@ Test:
 /test - solidity/javascript code that tests the contracts
 To run all tests, type truffle test. To test a specific file, type truffle test ./test/<file_name>
 
-# Edit Contracts and Redeploy:
+## Edit Contracts and Redeploy:
 Once you’ve finished editing the contract, make sure the web3.eth.defaultAccount value in /config/config.js matches the root account of the nodes you are deploying to. Also, make sure the truffleConfig variable is referring to the correct network: 
 const truffleConfig = require('../truffle.js').networks.<network_name>
 To see and edit the available networks, refer to the truffle.js file. 
@@ -47,7 +47,7 @@ If, however, you’d like to redeploy all contracts (including storage ones), ru
 After deployment, re-push the project to the remote instances since the build files have been modified, and Truffle will need the updated build files to allow web3 to connect to the Ethereum nodes.
 
 
-# Shortcomings/To-Do
+## Shortcomings/To-Do
 Upgradeability - Upgradeability is implemented for the OhanaCoin and Admin contracts, but for some reason calling another contract’s functions does not work on the remote geth nodes. For now, I’ve commented out the upgrade-able code in the OhanaCoins contract.
 Because external function calls don’t work, the Admin contract doesn’t work (still using the “upgrade-able” code), and adminBurnFrom(), transferFrom(), and resetBalances() in the OhanaCoins contract don’t work either since they rely on functions from the Admin contract
 Error Codes - Return errors from the contracts. Hopefully web3 will be able to read messages from require statements in the future, but for now the best solution would be to emit an Error event.
@@ -57,7 +57,7 @@ ETHER FLUCTUATIONS - Transactions that seemingly come out of nowhere are drainin
 A possible solution for this would be to drastically increase the mining rewards in consensus.go to offset the losses that these transactions incur. Refer to here for more info
 However, registration still works since the users are getting ether from the OhanaCoins contract, not the etherbase (etherbase deposits ether into contract upon deployment)
 
-# Node.js API:
+## Node.js API:
 User API:
  /user/count 
 Method - GET
