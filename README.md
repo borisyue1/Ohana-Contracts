@@ -202,30 +202,30 @@ user adminId must be an admin
 	* Description - admin adminId removes user userId from his/her team
 	user adminId must be an admin
 
-Owner API:
-/owner/burnFrom 
-Method - POST
-Request body params
-userId - String
-value - Integer
-balanceType - (0 for personal, 1 for transferable)
-password - String
-Description - etherbase burns value coins from user userId’s personal or transferable balance (depending on balanceType); used for scheduled burns 
-password must be etherbase’s password
-/owner/depositAllowance 
-Method - POST
-Request body params
-userId - String
-password - String
-Description - etherbase deposits monthly allowance into user userId’s transferable balance along with some ether
-password must be etherbase’s password
-/owner/resetBalances 
-Method - POST
-Request body params
-userId - String
-password - String
-Description - resets user userId’s personal balance to 0 and transferable balance to 30
-password must be etherbase’s password
+**Owner API**:
+* **/owner/burnFrom** 
+	* Method - POST
+	* Request body params
+		* userId - String
+		* value - Integer
+		* balanceType - (0 for personal, 1 for transferable)
+		* password - String
+	* Description - etherbase burns value coins from user userId’s personal or transferable balance (depending on balanceType); used for scheduled burns 
+		* password must be etherbase’s password
+* **/owner/depositAllowance** 
+	* Method - POST
+	* Request body params
+		* userId - String
+		* password - String
+	* Description - etherbase deposits monthly allowance into user userId’s transferable balance along with some ether
+		* password must be etherbase’s password
+* **/owner/resetBalances** 
+	* Method - POST
+	* Request body params
+		* userId - String
+		* password - String
+	* Description - resets user userId’s personal balance to 0 and transferable balance to 30
+		* password must be etherbase’s password
 
 Leaderboard API:
 /leaderboard
