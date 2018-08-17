@@ -6,13 +6,13 @@
 2. **Start Geth node:**
 	1. To initialize the blockchain, you need to create a genesis.json file, which specifies some configurations and generates the first block. Refer to this file for an example that I used.
 	2. Once you’ve created the file, initialize the blockchain with geth --datadir ./path/to/blockchain init genesis.json. If no datadir is specified, the blockchain data will be stored in your current directory.
-To start up the node, run geth --rpc --rpccorsdomain "*" --datadir ./path/to/blockchain --rpcapi "db,eth,net,web3,txpool,miner,admin" --networkid  <any_number> console. The console command starts an interactive Javascript environment as well. Again, if no datadir is specified, the node will be referring to the blockchain data stored in your current directory.
-Refer to this doc for all the available geth command line options.
-Refer to this guide for a more comprehensive explanation of how to start up a geth node.
+	3. To start up the node, run geth --rpc --rpccorsdomain "*" --datadir ./path/to/blockchain --rpcapi "db,eth,net,web3,txpool,miner,admin" --networkid  <any_number> console. The console command starts an interactive Javascript environment as well. Again, if no datadir is specified, the node will be referring to the blockchain data stored in your current directory.
+	4. Refer to this doc for all the available geth command line options.
+	5. Refer to this guide for a more comprehensive explanation of how to start up a geth node.
 3. Create root account (etherbase) and start miner:
-Once you’ve started the geth node and are in the Javascript console, type personal.newAccount(“<password>”) to create a new account, which automatically gets set as the etherbase.
-To start the miner type miner.start(), which will deposit the ether rewards into the etherbase’s account. To stop, type miner.stop()
-Refer to this doc for all the available APIs and functions. **To use a specific API in the console, make sure it’s included in the --rpcapi command when starting the geth node up
+	1. Once you’ve started the geth node and are in the Javascript console, type personal.newAccount(“<password>”) to create a new account, which automatically gets set as the etherbase.
+	2. To start the miner type miner.start(), which will deposit the ether rewards into the etherbase’s account. To stop, type miner.stop()
+	3. Refer to this doc for all the available APIs and functions. **To use a specific API in the console, make sure it’s included in the --rpcapi command when starting the geth node up
 
 ## Project Folder Structure:
 
