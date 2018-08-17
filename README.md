@@ -48,12 +48,12 @@ Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 
 
 ## Shortcomings/To-Do
-Upgradeability - Upgradeability is implemented for the OhanaCoin and Admin contracts, but for some reason calling another contract’s functions does not work on the remote geth nodes. For now, I’ve commented out the upgrade-able code in the OhanaCoins contract.
-Because external function calls don’t work, the Admin contract doesn’t work (still using the “upgrade-able” code), and adminBurnFrom(), transferFrom(), and resetBalances() in the OhanaCoins contract don’t work either since they rely on functions from the Admin contract
-Error Codes - Return errors from the contracts. Hopefully web3 will be able to read messages from require statements in the future, but for now the best solution would be to emit an Error event.
-GUS Event Timeline - The activity timeline can only handle automated deposit and transfer transactions, not burns or balance resets.
-Gus Admins - Implement admin functionality in the front-end
-ETHER FLUCTUATIONS - Transactions that seemingly come out of nowhere are draining the etherbase’s ether 
+* **Upgradeability** - Upgradeability is implemented for the OhanaCoin and Admin contracts, but for some reason calling another contract’s functions does not work on the remote geth nodes. For now, I’ve commented out the upgrade-able code in the OhanaCoins contract.
+	* Because external function calls don’t work, the Admin contract doesn’t work (still using the “upgrade-able” code), and adminBurnFrom(), transferFrom(), and resetBalances() in the OhanaCoins contract don’t work either since they rely on functions from the Admin contract
+* **Error Codes**  - Return errors from the contracts. Hopefully web3 will be able to read messages from require statements in the future, but for now the best solution would be to emit an Error event.
+* **GUS Event Timeline** - The activity timeline can only handle automated deposit and transfer transactions, not burns or balance resets.
+* **Gus Admins** - Implement admin functionality in the front-end
+* **ETHER FLUCTUATIONS** - Transactions that seemingly come out of nowhere are draining the etherbase’s ether 
 A possible solution for this would be to drastically increase the mining rewards in consensus.go to offset the losses that these transactions incur. Refer to here for more info
 However, registration still works since the users are getting ether from the OhanaCoins contract, not the etherbase (etherbase deposits ether into contract upon deployment)
 
