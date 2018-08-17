@@ -59,10 +59,10 @@ Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 
 ## Node.js API:
 **User API**:
-* /user/count 
+* **/user/count** 
 	* Method - GET
 	* Description - returns number of users registered
-* /user/balances 
+* **/user/balances** 
 	* Method - POST
 	* Request body params: 
 		* userId - String
