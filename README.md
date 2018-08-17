@@ -7,7 +7,7 @@
 	1. Type ```geth account new``` to create a new account, which automatically gets set as the etherbase. Copy the address that gets returned since it will be used in the genesis.json file in the next step.
 3. **Start Geth node:**
 	1. To initialize the blockchain, you need to create a **genesis.json** file, which specifies some configurations and generates the first block. Refer to this [file](https://github.com/borisyue1/example_genesis/blob/master/genesis.json) for an example that I used. In the alloc section, replace the address specified with the one that was created in the previous step. This will alloc some ether to the etherbase when the blockchain is created.
-	2. To reduce the mining difficulty (faster transaction speed), refer to the [first answer](https://ethereum.stackexchange.com/questions/2539/how-do-i-decrease-the-difficulty-on-a-private-testnet). For Ohana Coins, the difficulty is set to 1 in genesis.json and consensus.go is changed. *Don’t forget to run ```make geth``` after!
+	2. To reduce the mining difficulty (for faster transaction speed), refer to the [first answer](https://ethereum.stackexchange.com/questions/2539/how-do-i-decrease-the-difficulty-on-a-private-testnet). For Ohana Coins, the difficulty is set to 1 in genesis.json and consensus.go is changed. *Don’t forget to run ```make geth``` after!
 	3. Once you’ve created the file, initialize the blockchain with ```geth --datadir ./path/to/blockchain init genesis.json```. If no datadir is specified, the blockchain data will be stored in your current directory.
 	4. To start up the node, run ```geth --rpc --rpccorsdomain "*" --datadir ./path/to/blockchain --rpcapi "db,eth,net,web3,txpool,miner,admin" --networkid  <any_number> console```. The console command starts an interactive Javascript environment as well. Again, if no datadir is specified, the node will be referring to the blockchain data stored in your current directory.
 	5. Refer to this [doc](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for all the available geth command line options.
@@ -230,35 +230,35 @@ user adminId must be an admin
 	* Description - resets user userId’s personal balance to 0 and transferable balance to 30
 		* password must be etherbase’s password
 
-Leaderboard API:
-/leaderboard
-Method - GET
-Description - returns the top 10 users
-/leaderboard/reset
-Method - POST
-Request body params
-password - String
-Description - etherbase resets the leaderboard
-password must be etherbase’s password
+**Leaderboard API:**
+* **/leaderboard**
+	* Method - GET
+	* Description - returns the top 10 users
+* **/leaderboard/reset**
+	* Method - POST
+	* Request body params
+		* password - String
+	* Description - etherbase resets the leaderboard
+		* password must be etherbase’s password
 
-Scheduler API:
-/scheduler/nextDeposit
-Method - GET
-Description - returns days and hours left until next allowance deposit date
-/scheduler/nextReset
-Method - GET
-Description - returns days and hours left until next balance reset date
-/scheduler/setDepositDate
-Method - POST
-Request body params
-year - Integer
-month - Integer
-day - Integer
-Description - sets the next allowance deposit date
-/scheduler/setResetDate
-Method - POST
-Request body params
-year - Integer
-month - Integer
-day - Integer
-Description - sets the next balance reset date
+**Scheduler API:**
+* **/scheduler/nextDeposit**
+	* Method - GET
+	* Description - returns days and hours left until next allowance deposit date
+* **/scheduler/nextReset**
+	* Method - GET
+	* Description - returns days and hours left until next balance reset date
+* **/scheduler/setDepositDate**
+	* Method - POST
+	* Request body params
+		* year - Integer
+		* month - Integer
+		* day - Integer
+	* Description - sets the next allowance deposit date
+* **/scheduler/setResetDate**
+	* Method - POST
+	* Request body params
+		* year - Integer
+		* month - Integer
+		* day - Integer
+	* Description - sets the next balance reset date
