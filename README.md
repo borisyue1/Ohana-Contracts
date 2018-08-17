@@ -58,15 +58,15 @@ Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 	* However, registration still works since the users are getting ether from the OhanaCoins contract, not the etherbase (etherbase deposits ether into contract upon deployment)
 
 ## Node.js API:
-User API:
- /user/count 
-Method - GET
-Description - returns number of users registered
-/user/balances 
-Method - POST
-Request body params: 
-userId - String
-Description - returns personal and transferable balances for the user 
+**User API**:
+* /user/count 
+	* Method - GET
+	* Description - returns number of users registered
+* /user/balances 
+	* Method - POST
+	* Request body params: 
+		* userId - String
+	* Description - returns personal and transferable balances for the user 
 /user/balances 
 Method - POST
 Request body params: 
