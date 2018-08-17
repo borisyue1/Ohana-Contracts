@@ -138,69 +138,69 @@ etherbase account needs to be unlocked for this
 	* Request body params
 		* adminId - String
 	* Description - returns whether user is an admin or not
-/admin/team 
-Method - POST
-Request body params
-adminId - String
-Description - returns admin’s team members
-/admin/isTeamMember
-Method - POST
-Request body params
-adminId - String
-userId - String
-Description - returns whether user userId is on admin’s team
-/admin/transferFrom 
-Method - POST
-Request body params
-adminId - String
-toId - String
-value - Integer
-password - String
-message - String
-Description - transfers value coins to user toId from common pool along with specified message
+* **/admin/team** 
+	* Method - POST
+	* Request body params
+		* adminId - String
+	* Description - returns admin’s team members
+* **/admin/isTeamMember**
+	* Method - POST
+	* Request body params
+		* adminId - String
+		* userId - String
+	* Description - returns whether user userId is on admin’s team
+* **/admin/transferFrom** 
+	* Method - POST
+	* Request body params
+		* adminId - String
+		* toId - String
+		* value - Integer
+		* password - String
+		* message - String
+	* Description - transfers value coins to user toId from common pool along with specified message
 user adminId must be an admin
-/admin/burnFrom 
-Method - POST
-Request body params
-adminId - String
-toId - String
-value - Integer
-password - String
-Description - burns value coins from user toId 
-user adminId must be an admin
-/admin/addAdmin 
-Method - POST
-Request body params
-adminId - String
-userId - String
-team - String[]
-password - String
-Description - admin adminId adds user userId as an admin 
-user adminId must be an admin
-/admin/removeAdmin 
-Method - POST
-Request body params
-adminId - String
-userId - String
-password - String
-Description - admin adminId removes user userId’s admin status
-user adminId must be an admin
-/admin/addTeamMember 
-Method - POST
-Request body params
-adminId - String
-userId - String
-password - String
-Description - admin adminId adds user userId to his/her team
-user adminId must be an admin
-/admin/removeTeamMember 
-Method - POST
-Request body params
-adminId - String
-userId - String
-password - String
-Description - admin adminId removes user userId from his/her team
-user adminId must be an admin
+* **/admin/burnFrom** 
+	* Method - POST
+	* Request body params
+		* adminId - String
+		* toId - String
+		* value - Integer
+		* password - String
+	* Description - burns value coins from user toId 
+	user adminId must be an admin
+* **/admin/addAdmin** 
+	* Method - POST
+	* Request body params
+		* adminId - String
+		* userId - String
+		* team - String[]
+		* password - String
+	* Description - admin adminId adds user userId as an admin 
+	user adminId must be an admin
+* **/admin/removeAdmin** 
+	* Method - POST
+	* Request body params
+		* adminId - String
+		* userId - String
+		* password - String
+	* Description - admin adminId removes user userId’s admin status
+	user adminId must be an admin
+* **/admin/addTeamMember** 
+	* Method - POST
+	* Request body params
+		* adminId - String
+		* userId - String
+		* password - String
+	* Description - admin adminId adds user userId to his/her team
+	user adminId must be an admin
+* **/admin/removeTeamMember** 
+	* Method - POST
+	* Request body params
+		* adminId - String
+		* userId - String
+		* password - String
+	* Description - admin adminId removes user userId from his/her team
+	user adminId must be an admin
 
 Owner API:
 /owner/burnFrom 
