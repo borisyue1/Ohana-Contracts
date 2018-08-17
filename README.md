@@ -6,11 +6,12 @@
 2. **Create root account (etherbase):**
 	1. Type ```geth account new``` to create a new account, which automatically gets set as the etherbase. Copy the address that gets returned since it will be used in the genesis.json file in the next step.
 3. **Start Geth node:**
-	1. To initialize the blockchain, you need to create a **genesis.json** file, which specifies some configurations and generates the first block. Refer to this file for an example that I used.
-	2. Once you’ve created the file, initialize the blockchain with ```geth --datadir ./path/to/blockchain init genesis.json```. If no datadir is specified, the blockchain data will be stored in your current directory.
-	3. To start up the node, run ```geth --rpc --rpccorsdomain "*" --datadir ./path/to/blockchain --rpcapi "db,eth,net,web3,txpool,miner,admin" --networkid  <any_number> console```. The console command starts an interactive Javascript environment as well. Again, if no datadir is specified, the node will be referring to the blockchain data stored in your current directory.
-	4. Refer to this [doc](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for all the available geth command line options.
-	5. Refer to this [guide](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for a more comprehensive explanation of how to start up a geth node.
+	1. To initialize the blockchain, you need to create a **genesis.json** file, which specifies some configurations and generates the first block. Refer to this [file](https://github.com/borisyue1/example_genesis/blob/master/genesis.json) for an example that I used. In the alloc section, replace the address specified with the one that was created in the previous step. This will alloc some ether to the etherbase when the blockchain is created.
+	2. To reduce the mining difficulty (faster transaction speed), refer to the [first answer](https://ethereum.stackexchange.com/questions/2539/how-do-i-decrease-the-difficulty-on-a-private-testnet). For Ohana Coins, the difficulty is set to 1 in genesis.json and consensus.go is changed. *Don’t forget to run make geth after!
+	3. Once you’ve created the file, initialize the blockchain with ```geth --datadir ./path/to/blockchain init genesis.json```. If no datadir is specified, the blockchain data will be stored in your current directory.
+	4. To start up the node, run ```geth --rpc --rpccorsdomain "*" --datadir ./path/to/blockchain --rpcapi "db,eth,net,web3,txpool,miner,admin" --networkid  <any_number> console```. The console command starts an interactive Javascript environment as well. Again, if no datadir is specified, the node will be referring to the blockchain data stored in your current directory.
+	5. Refer to this [doc](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for all the available geth command line options.
+	6. Refer to this [guide](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for a more comprehensive explanation of how to start up a geth node.
 4. Create root account (etherbase) and start miner:
 	1. Once you’ve started the geth node and are in the Javascript console, type ```personal.newAccount("<password>")``` to create a new account, which automatically gets set as the etherbase.
 	2. To start the miner type ```miner.start()```, which will deposit the ether rewards into the etherbase’s account. To stop, type ```miner.stop()```
