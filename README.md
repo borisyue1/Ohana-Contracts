@@ -54,8 +54,8 @@ Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 * **GUS Event Timeline** - The activity timeline can only handle automated deposit and transfer transactions, not burns or balance resets.
 * **Gus Admins** - Implement admin functionality in the front-end
 * **ETHER FLUCTUATIONS** - Transactions that seemingly come out of nowhere are draining the etherbase’s ether 
-A possible solution for this would be to drastically increase the mining rewards in consensus.go to offset the losses that these transactions incur. Refer to here for more info
-However, registration still works since the users are getting ether from the OhanaCoins contract, not the etherbase (etherbase deposits ether into contract upon deployment)
+	* A possible solution for this would be to drastically increase the mining rewards in **consensus.go** to offset the losses that these transactions incur. Refer to [here](https://ethereum.stackexchange.com/questions/31875/where-and-how-can-i-set-the-mining-reward) for more info
+	* However, registration still works since the users are getting ether from the OhanaCoins contract, not the etherbase (etherbase deposits ether into contract upon deployment)
 
 ## Node.js API:
 User API:
