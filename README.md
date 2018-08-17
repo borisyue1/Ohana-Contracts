@@ -2,7 +2,7 @@
 
 ## Set Up Geth Locally:
 
-1. **Install Ethereum and Geth**
+1. **[Install Ethereum and Geth](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)**
 2. **Start Geth node:**
 	1. To initialize the blockchain, you need to create a **genesis.json** file, which specifies some configurations and generates the first block. Refer to this file for an example that I used.
 	2. Once you’ve created the file, initialize the blockchain with **geth --datadir ./path/to/blockchain init genesis.json**. If no datadir is specified, the blockchain data will be stored in your current directory.
