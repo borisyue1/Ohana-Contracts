@@ -5,7 +5,7 @@
 1. **[Install Ethereum and Geth](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)**
 2. **Start Geth node:**
 	1. To initialize the blockchain, you need to create a **genesis.json** file, which specifies some configurations and generates the first block. Refer to this file for an example that I used.
-	2. Once you’ve created the file, initialize the blockchain with code(geth --datadir ./path/to/blockchain init genesis.json). If no datadir is specified, the blockchain data will be stored in your current directory.
+	2. Once you’ve created the file, initialize the blockchain with '''geth --datadir ./path/to/blockchain init genesis.json'''. If no datadir is specified, the blockchain data will be stored in your current directory.
 	3. To start up the node, run **geth --rpc --rpccorsdomain "*" --datadir ./path/to/blockchain --rpcapi "db,eth,net,web3,txpool,miner,admin" --networkid  <any_number> console**. The console command starts an interactive Javascript environment as well. Again, if no datadir is specified, the node will be referring to the blockchain data stored in your current directory.
 	4. Refer to this [doc](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for all the available geth command line options.
 	5. Refer to this [guide](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for a more comprehensive explanation of how to start up a geth node.
