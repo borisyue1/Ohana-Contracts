@@ -84,29 +84,29 @@ Git Repo: https://git.soma.salesforce.com/byue/Ohana-Contracts
 		* fromId - String
 		* toId - String
 	* Description - returns how much user fromId has transferred to toId so far
-/user/pastBalances 
-Method - POST
-Request body params
-userId - String
-Description - returns past week of coin earnings for the user (all 0 if just registered)
-/user/transfer
-Method - POST
-Request body params
-userId - String
-toId - String
-value - Integer
-fromBalance - Integer (0 for personal and 1 for transferable)
-message - String 
-password - String
-Description - transfers value Ohana Coins from user userId to user toId along with the specified message 
-/user/register 
-Method - POST
-Request body params
-password - String
-Description - creates a new user and returns the address
+* **/user/pastBalances** 
+	* Method - POST
+	* Request body params
+		* userId - String
+	* Description - returns past week of coin earnings for the user (all 0 if just registered)
+* **/user/transfer**
+	* Method - POST
+	* Request body params
+		* userId - String
+		* toId - String
+		* value - Integer
+		* fromBalance - Integer (0 for personal and 1 for transferable)
+		* message - String 
+		* password - String
+	* Description - transfers value Ohana Coins from user userId to user toId along with the specified message 
+* **/user/register** 
+	* Method - POST
+	* Request body params
+		* password - String
+	* Description - creates a new user and returns the address
 etherbase account needs to be unlocked for this
 		
-Admin API:
+**Admin API**:
 /admin/userTransferLimit 
 Method - GET
 Description - global variable, returns the max amount that admins can transfer to a particular users 
